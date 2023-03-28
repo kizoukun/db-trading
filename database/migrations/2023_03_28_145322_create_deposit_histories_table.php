@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('deposit_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid("user_id")->constrained("users");
+            $table->foreignUuid("customer_id")->constrained("users");
             $table->decimal("amount");
             $table->string("description");
             $table->string("status");
