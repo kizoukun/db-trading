@@ -16,7 +16,7 @@ class NotAuthenticated
     public function handle(Request $request, Closure $next): Response
     {
         if(auth()->check())
-            return redirect()->intended("/");
+            return redirect()->intended("/dashboard");
         return $next($request);
     }
 }

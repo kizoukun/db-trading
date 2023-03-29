@@ -38,6 +38,6 @@ class RegisterController extends Controller
         // Store the user
         DB::select("INSERT INTO users (id, email, password, first_name, last_name, phone, address) VALUES (?, ?, ?, ?, ?, ?, ?)", [Str::uuid(),$email, $password, $first_name, $last_name, $phone_number, $address]);
         // Redirect
-        return redirect("/auth/register");
+        return redirect("/auth/login");
     }
 }

@@ -31,7 +31,7 @@ class LoginController extends Controller
         if(Hash::check($credentials['password'], $user->password)) {
             Auth::loginUsingId($user->id);
             request()->session()->regenerate();
-            return redirect()->intended("/");
+            return redirect()->intended("/dashboard");
         }
         return back()->withErrors([
             "email" => "The provided credentials do not match our records."

@@ -6,6 +6,7 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\NotAuthenticated;
 use App\Http\Middleware;
+use App\Http\Controllers\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +33,9 @@ Route::get("/auth/logout", function() {
     Auth::logout();
     return redirect("/auth/login");
 })->middleware(Middleware\EnsureAuthenticated::class);
+
+Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenticated::class], function () {
+    Route::get("/", [Dashboard\DashboardController::class, "index"]);
+    Route::get("/balance", [Dashboard\BalanceController::class, "index"]);
+    Route::post("/deposit", [Dashboard\DepositController::class, "store"]);
+});

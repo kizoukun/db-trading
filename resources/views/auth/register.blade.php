@@ -5,6 +5,7 @@
     <title>Document</title>
 </head>
 <body>
+<a href="/auth/login" class="text-blue-500 hover:text-blue-600 hover:underline text-lg">Login</a>
     <form action="/auth/register" method="post" class="space-y-4">
         @csrf
         <div>

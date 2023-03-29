@@ -33,6 +33,8 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    protected $keyType = 'string';
+
     /**
      * The attributes that should be cast.
      *

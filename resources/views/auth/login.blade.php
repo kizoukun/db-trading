@@ -5,6 +5,7 @@
     <title>Document</title>
 </head>
 <body>
+<a href="/auth/register" class="text-blue-500 hover:text-blue-600 hover:underline text-lg">Register</a>
 <form action="/auth/login" method="post" class="space-y-4">
     @csrf
     <div>
@@ -24,7 +25,7 @@
             </ul>
         </div>
     @endif
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Register</button>
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Login</button>
 </form>
 </body>
 </html>
