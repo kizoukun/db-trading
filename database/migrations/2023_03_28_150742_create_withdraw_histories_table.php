@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -13,12 +14,13 @@ return new class extends Migration
     {
         Schema::create('withdraw_histories', function (Blueprint $table) {
             $table->id();
-            $table->uuid("customer_id");
-            $table->foreign("customer_id")->references("id")->on("customers");
+            $table->uuid("user_id");
+            $table->foreign("user_id")->references("id")->on("users");
             $table->decimal("amount");
             $table->string("description");
             $table->string("status");
-            $table->timestamps();
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 
