@@ -22,6 +22,8 @@ class DepositController extends Controller
         $description = "Topup hehe suii";
         $insert = DB::insert("INSERT INTO balance_histories (user_id, balance_before, balance_after, amount, description, type) VALUES (?, ?, ?, ?, ?, ?)",
             [auth()->id(), $balance_before, $balance_after, $amount, $description, 1]);
+        $insertDB = DB::insert("INSERT INTO deposit_histories (user_id, amount, description, status) VALUES (?, ?, ?, ?)",
+            [auth()->id(), $amount, $description, "PENDING"]);
         return redirect()->back();
     }
 }

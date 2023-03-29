@@ -38,4 +38,6 @@ Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenti
     Route::get("/", [Dashboard\DashboardController::class, "index"]);
     Route::get("/balance", [Dashboard\BalanceController::class, "index"]);
     Route::post("/deposit", [Dashboard\DepositController::class, "store"]);
+    Route::get("/bank", [Dashboard\BankController::class, "index"]);
+    Route::post("/bank", [Dashboard\BankController::class, "store"]);
 });
