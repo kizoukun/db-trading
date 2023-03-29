@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('withdraw_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignUuid("customer_id")->constrained("users");
+            $table->uuid("customer_id");
+            $table->foreign("customer_id")->references("id")->on("customers");
             $table->decimal("amount");
             $table->string("description");
             $table->string("status");
