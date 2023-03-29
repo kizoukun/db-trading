@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string("symbol")->unique()->primary();
             $table->string("name");
             $table->string("description");
-            $table->float("total_shares");
+            $table->decimal("total_shares", 32, 2);
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

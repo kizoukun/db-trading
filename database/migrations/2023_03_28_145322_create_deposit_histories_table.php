@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->uuid("user_id");
             $table->foreign("user_id")->references("id")->on("users");
-            $table->decimal("amount");
+            $table->decimal("amount", 32, 2);
             $table->string("description");
             $table->string("status");
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

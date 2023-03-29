@@ -15,9 +15,9 @@ return new class extends Migration
         Schema::create('balance_histories', function (Blueprint $table) {
             $table->id();
             $table->foreignUuid("user_id")->references("id")->on("users");
-            $table->decimal("amount");
-            $table->decimal("balance_before");
-            $table->decimal("balance_after");
+            $table->decimal("amount", 32, 2);
+            $table->decimal("balance_before", 32, 2);
+            $table->decimal("balance_after", 32, 2);
             $table->string("description");
             $table->tinyInteger("type");
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));

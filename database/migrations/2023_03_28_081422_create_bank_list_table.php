@@ -15,8 +15,8 @@ return new class extends Migration
         Schema::create('bank_list', function (Blueprint $table) {
             $table->integer("code")->unique()->primary();
             $table->string("name");
-            $table->decimal("min_withdraw");
-            $table->decimal("max_withdraw");
+            $table->decimal("min_withdraw", 32, 2);
+            $table->decimal("max_withdraw", 32, 2);
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign("stock_symbol")->references("symbol")->on("stocks");
             $table->string("order_type");
             $table->integer("order_quantity");
-            $table->decimal("order_price");
+            $table->decimal("order_price", 32, 2);
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
