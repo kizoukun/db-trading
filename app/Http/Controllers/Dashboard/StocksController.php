@@ -56,6 +56,7 @@ class StocksController extends Controller
             foreach($datas as $data) {
                 $order_quantity -= $data->order_quantity;
                 if($order_quantity >= 0) {
+                    // TODO need to update filled quantity on orders table
                     DB::delete("DELETE FROM open_orders WHERE id = ?", [$data->id]);
                     //give money to user :D
                 } else {
@@ -95,6 +96,7 @@ class StocksController extends Controller
             foreach($datas as $data) {
                 $order_quantity -= $data->order_quantity;
                 if($order_quantity >= 0) {
+                    // TODO need to update filled quantity on orders table
                     DB::delete("DELETE FROM open_orders WHERE id = ?", [$data->id]);
                     //give money to user :D
                 } else {
@@ -110,9 +112,6 @@ class StocksController extends Controller
                 $insertOpenOrders = DB::insert("INSERT INTO open_orders (user_id, order_id, stock_symbol, order_type, order_price, order_quantity) VALUES (?, ?, ?, ?, ?, ?)",
                     [$user->id, $insertedId, $stock->symbol, $order_type, $order_price, $order_quantity]);
             }
-            // Add stocks to open order to user
-//            $insert = DB::insert("INSERT INTO open_orders (user_id, stock_symbol, order_type, order_price, order_quantity) VALUES (?, ?, ?, ?, ?)",
-//                [$user->id, $stock->symbol, $order_type, $order_price, $order_quantity]);
             return redirect()->back();
         } else {
             abort(500);
