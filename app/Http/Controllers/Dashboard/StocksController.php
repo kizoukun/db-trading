@@ -61,7 +61,7 @@ class StocksController extends Controller
                     //give money to user :D
                 } else {
                     //give money to user :D
-                    DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity - $request_order_quantity, $request_order_quantity,$data->id]);
+                    DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity + $order_quantity, $request_order_quantity,$data->id]);
                 }
 
             }
@@ -101,7 +101,7 @@ class StocksController extends Controller
                     //give money to user :D
                 } else {
                     //give money to user :D
-                    DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity - $request_order_quantity, $request_order_quantity,$data->id]);
+                    DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity + $order_quantity, $request_order_quantity,$data->id]);
                 }
 
             }
