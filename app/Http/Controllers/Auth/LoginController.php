@@ -29,7 +29,7 @@ class LoginController extends Controller
         }
         $user = $result[0];
         if(Hash::check($credentials['password'], $user->password)) {
-            Auth::loginUsingId($user->id);
+            Auth::loginUsingId($user->id, true);
             request()->session()->regenerate();
             return redirect()->intended("/dashboard");
         }

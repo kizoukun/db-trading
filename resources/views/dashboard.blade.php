@@ -9,7 +9,10 @@
 </head>
 <body>
     @foreach($stocks as $stock)
-        {{ $stock->symbol }}
+        <a href="/dashboard/stocks/{{$stock->symbol}}">
+            {{ $stock->symbol }}
+        </a>
+
     @endforeach
 </body>
 </html>
