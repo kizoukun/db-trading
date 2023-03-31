@@ -38,9 +38,9 @@ class StocksController extends Controller
         $user = auth()->user();
         if($order_type == "BUY") {
             $total_price = $order_price * $order_quantity;
-            if($total_price > $user->balance) {
-                return back()->withErrors("Insufficient balance");
-            }
+//            if($total_price > $user->balance) {
+//                return back()->withErrors("Insufficient balance");
+//            }
 //            $take_user_balance = DB::insert("INSERT INTO balance_histories (user_id, balance_before, balance_after, amount, description, type) VALUES (?, ?, ?, ?, ?, ?)",
 //                [$user->id, $user->balance, $user->balance - $total_price, $total_price, "BUY_STOCKS: " . $stock->symbol, 1]);
 
