@@ -53,15 +53,17 @@ class StocksController extends Controller
                 $current_num += $sell->order_quantity;
                 $datas[] = $sell;
             }
+            $request_order_quantity_update = $request_order_quantity;
             foreach($datas as $data) {
                 $order_quantity -= $data->order_quantity;
                 if($order_quantity >= 0) {
                     DB::delete("DELETE FROM open_orders WHERE id = ?;", [$data->id]);
                     DB::update("UPDATE orders SET filled_quantity = orders.order_quantity WHERE id = ?;", [$data->order_id]);
+                    $request_order_quantity_update -= $data->order_quantity;
                     //give money to user :D
                 } else {
                     //give money to user :D
-                    DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity + $order_quantity, $request_order_quantity,$data->id]);
+                    DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity - $request_order_quantity_update, $request_order_quantity,$data->id]);
                 }
 
             }
@@ -93,15 +95,17 @@ class StocksController extends Controller
                 $current_num += $buy->order_quantity;
                 $datas[] = $buy;
             }
+            $request_order_quantity_update = $request_order_quantity;
             foreach($datas as $data) {
                 $order_quantity -= $data->order_quantity;
                 if($order_quantity >= 0) {
                     DB::delete("DELETE FROM open_orders WHERE id = ?;", [$data->id]);
                     DB::update("UPDATE orders SET filled_quantity = orders.order_quantity WHERE id = ?;", [$data->order_id]);
+                    $request_order_quantity_update -= $data->order_quantity;
                     //give money to user :D
                 } else {
                     //give money to user :D
-                    DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity + $order_quantity, $request_order_quantity,$data->id]);
+                    DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity - $request_order_quantity_update, $request_order_quantity,$data->id]);
                 }
 
             }
