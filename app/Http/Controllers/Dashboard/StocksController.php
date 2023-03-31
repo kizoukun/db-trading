@@ -56,8 +56,8 @@ class StocksController extends Controller
             foreach($datas as $data) {
                 $order_quantity -= $data->order_quantity;
                 if($order_quantity >= 0) {
-                    // TODO need to update filled quantity on orders table
-                    DB::delete("DELETE FROM open_orders WHERE id = ?", [$data->id]);
+                    DB::delete("DELETE FROM open_orders WHERE id = ?;", [$data->id]);
+                    DB::update("UPDATE orders SET filled_quantity = orders.order_quantity WHERE id = ?;", [$data->order_id]);
                     //give money to user :D
                 } else {
                     //give money to user :D
@@ -96,8 +96,8 @@ class StocksController extends Controller
             foreach($datas as $data) {
                 $order_quantity -= $data->order_quantity;
                 if($order_quantity >= 0) {
-                    // TODO need to update filled quantity on orders table
-                    DB::delete("DELETE FROM open_orders WHERE id = ?", [$data->id]);
+                    DB::delete("DELETE FROM open_orders WHERE id = ?;", [$data->id]);
+                    DB::update("UPDATE orders SET filled_quantity = orders.order_quantity WHERE id = ?;", [$data->order_id]);
                     //give money to user :D
                 } else {
                     //give money to user :D
