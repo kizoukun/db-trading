@@ -52,7 +52,6 @@ class StocksController extends Controller
                 $datas[] = $sell;
             }
             $request_order_quantity_update = $request_order_quantity;
-            //not used currently
             $price_data = [];
             foreach($datas as $data) {
                 $order_quantity -= $data->order_quantity;
@@ -142,7 +141,9 @@ class StocksController extends Controller
         $id = $request->input('order_id');
         $order = DB::select("SELECT * FROM open_orders WHERE id = ?;", [$id]);
         $order = $order[0];
-        $this->addUserBalance($order->user_id, $order->order_price * $order->order_quantity, "CANCEL BUY OPEN ORDER : " . $order->stock_symbol . " Amount: " . $order->order_quantity . " at price: " . $order->order_price);
+        if($order->order_type == "BUY") {
+            $this->addUserBalance($order->user_id, $order->order_price * $order->order_quantity, "CANCEL BUY OPEN ORDER : " . $order->stock_symbol . " Amount: " . $order->order_quantity . " at price: " . $order->order_price);
+        }
         DB::delete("DELETE FROM open_orders WHERE id = ?;", [$id]);
         return redirect()->back();
     }
