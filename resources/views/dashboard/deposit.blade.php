@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    @include("components.header")
+    @include("components.app.header")
     <title>Document</title>
 </head>
 <body>

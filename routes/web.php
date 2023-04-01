@@ -24,10 +24,10 @@ Route::get('/', function () {
 });
 
 Route::get("/auth/login", [LoginController::class, "index"])->name("login")->middleware(NotAuthenticated::class);
-Route::post("/auth/login", [LoginController::class, "login"])->middleware(NotAuthenticated::class);
+Route::post("/auth/login", [LoginController::class, "login"])->middleware(NotAuthenticated::class)->name('loginuser');
 
-Route::get("/auth/register", [RegisterController::class, "index"])->middleware(NotAuthenticated::class);
-Route::post("/auth/register", [RegisterController::class, "store"])->middleware(NotAuthenticated::class);
+Route::get("/auth/register", [RegisterController::class, "index"])->middleware(NotAuthenticated::class)->name('register');
+Route::post("/auth/register", [RegisterController::class, "store"])->middleware(NotAuthenticated::class)->name('registeruser');
 
 Route::get("/auth/logout", function(Request $request) {
     $user = Auth::user();
@@ -47,4 +47,8 @@ Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenti
     Route::get("/stocks/{id}", [Dashboard\StocksController::class, "id"]);
     Route::post("/stocks/{id}", [Dashboard\StocksController::class, "createOrder"]);
     Route::delete("/stocks/{id}", [Dashboard\StocksController::class, "cancelBuyOpenOrders"]);
+});
+
+Route::get('/app', function () {
+    return view('components.layouts.app');
 });
