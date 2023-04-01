@@ -45,7 +45,7 @@
         <button type="submit" class="bg-blue-500 hover:bg-blue-600 p-2 rounded-lg text-white">Submit</button>
     </form>
     <h1>Buy Orders</h1>
-    <table border="1">
+    <table border="1" width="100%">
         <thead>
             <tr>
                 <th>Price</th>
@@ -64,7 +64,7 @@
         </tbody>
     </table>
     <h1>Sell Orders</h1>
-    <table border="1">
+    <table border="1" width="100%">
         <thead>
         <tr>
             <th>Price</th>
@@ -78,6 +78,36 @@
                 <td>{{ $sell_order->order_price }}</td>
                 <td>{{ $sell_order->order_quantity }}</td>
                 <td>{{ number_format($sell_order->order_price * $sell_order->order_quantity) }}</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+    <h1>User Open Orders</h1>
+    <table border="1" width="100%">
+        <thead>
+        <tr>
+            <th>Price</th>
+            <th>Type</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+            <th>Cancel</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach($user_open_orders as $user_open)
+            <tr>
+                <td>{{ $user_open->order_price }}</td>
+                <td>{{ $user_open->order_type }}</td>
+                <td>{{ $user_open->order_quantity }}</td>
+                <td>{{ number_format($user_open->order_price * $user_open->order_quantity) }}</td>
+                <td>
+                    <form method="POST">
+                        @csrf
+                        @method("DELETE")
+                        <input type="hidden" name="order_id" value="{{ $user_open->id }}" />
+                        <button type="submit" >Cancel</button>
+                    </form>
+                </td>
             </tr>
         @endforeach
         </tbody>

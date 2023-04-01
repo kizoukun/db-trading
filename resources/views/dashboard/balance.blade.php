@@ -30,7 +30,7 @@
             </ul>
         </div>
     @endif
-    <table class="border border-black table-auto">
+    <table class="border border-black table-auto w-full">
         <thead>
             <tr>
                 <th>After</th>

@@ -46,4 +46,5 @@ Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenti
     Route::post("/bank", [Dashboard\BankController::class, "store"]);
     Route::get("/stocks/{id}", [Dashboard\StocksController::class, "id"]);
     Route::post("/stocks/{id}", [Dashboard\StocksController::class, "createOrder"]);
+    Route::delete("/stocks/{id}", [Dashboard\StocksController::class, "cancelBuyOpenOrders"]);
 });
