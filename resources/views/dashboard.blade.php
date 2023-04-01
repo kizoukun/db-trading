@@ -10,6 +10,10 @@
 <body>
     <h1>Stock List</h1>
     @foreach($stocks as $stock)
+        <a href="/dashboard/stocks/{{$stock->symbol}}">
+            {{ $stock->symbol }}
+        </a>
+
         <div>
             <a href="/dashboard/stocks/{{$stock->symbol}}">
                 {{ $stock->symbol }}
