@@ -46,6 +46,15 @@
                         </svg>
                     </button>
                 </form>
+                <div x-show="search_results" class="fixed bg-white p-2  overflow-auto rounded-b-lg">
+                    <div class="max-h-[80px]">
+                        <template x-for="(search, index) in search_results">
+                            <div :key="index">
+                                <p x-text="search.symbol + ' - ' + search.name"></p>
+                            </div>
+                        </template>
+                    </div>
+                </div>
             </div>
 
             <div class="sm:hidden">
@@ -61,6 +70,15 @@
                                 d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
                                 clip-rule="evenodd" />
                         </svg>
+                    </div>
+                </div>
+                <div x-show="search_results" class="fixed bg-white p-2  overflow-auto rounded-b-lg">
+                    <div class="max-h-[80px]">
+                        <template x-for="(search, index) in search_results">
+                            <div :key="index">
+                                <p x-text="search.symbol + ' - ' + search.name"></p>
+                            </div>
+                        </template>
                     </div>
                 </div>
             </div>
@@ -85,7 +103,7 @@
             <!-- User Dropdown -->
             <div class="relative inline-block">
                 <!-- Dropdown Toggle Button -->
-                <button type="button"
+                <button type="button"  @click="profileOpen = !profileOpen"
                     class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none"
                     id="tk-dropdown-layouts-user" aria-haspopup="true" aria-expanded="true">
                     <span>Admin</span>
@@ -114,7 +132,7 @@
           -->
                 <div role="menu" aria-labelledby="tk-dropdown-layouts-user"
                     class="absolute right-0 origin-top-right mt-2 w-48 shadow-xl rounded z-1">
-                    <div class="bg-white ring-1 ring-black ring-opacity-5 rounded divide-y divide-gray-100">
+                    <div id="menus" class="bg-white ring-1 ring-black ring-opacity-5 rounded divide-y divide-gray-100 hidden" :class="profileOpen ? 'block' : 'hidden'">
                         <div class="p-2 space-y-1">
                             <a role="menuitem" href="javascript:void(0)"
                                 class="flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
@@ -176,18 +194,28 @@
 <script>
     function searchJs() {
         return {
+            init() {
+                var menus = document.getElementById("menus");
+                menus.classList.remove("hidden");
+            },
             query: "",
             search_results: undefined,
+            profileOpen: false,
             async search() {
-
+                if(this.query.length < 1) {
+                    this.search_results = undefined;
+                    return;
+                }
                 try {
                     const response = await fetch(`/api/v1/search?query=${this.query}`);
                     const stocks = await response.json();
 
                     //still not working as there isn't a way to display the results yet
                     if(response.status === 200) {
-                        // this.search_results = stocks;
-                        this.displaySearchResults(stocks);
+                        this.search_results = stocks;
+                        // this.displaySearchResults(stocks);
+                    } else {
+                        this.search_results = undefined;
                     }
                 } catch (err) {
                     console.error(err);
