@@ -3,22 +3,9 @@
     <div class="flex justify-between max-w-10xl mx-auto px-4 lg:px-8 w-full">
         <!-- Left Section -->
         <div class="flex items-center space-x-2">
-            <!-- Toggle Sidebar on Desktop -->
-            <div class="hidden lg:block">
-                <button type="button"
-                    class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-6 rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
-                    <svg class="hi-solid hi-menu-alt-1 inline-block w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </button>
-            </div>
-            <!-- END Toggle Sidebar on Desktop -->
 
             <!-- Toggle Sidebar on Mobile -->
-            <div class="lg:hidden">
+            <div>
                 <button type="button"
                     class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-6 rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
                     <svg class="hi-solid hi-menu-alt-1 inline-block w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
@@ -32,37 +19,12 @@
             <!-- END Toggle Sidebar on Mobile -->
 
             <!-- Search -->
-            <div class="hidden sm:block">
-                <form @submit.prevent="search" class="flex items-center">
-                    <input type="search" placeholder="Search" x-model="query" id="tk-form-layouts-search"
-                        class="form-input w-full md:w-2/3 lg:w-3/4 py-2 px-4 border border-gray-300 rounded-lg leading-5 text-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
-                        @input.debounce="search">
-                    <button type="submit" class="flex-shrink-0 ml-2">
-                        <svg class="hi-solid hi-search inline-block w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd" />
-                        </svg>
-                    </button>
-                </form>
-                <div x-show="search_results" class="fixed bg-white p-2  overflow-auto rounded-b-lg">
-                    <div class="max-h-[80px]">
-                        <template x-for="(search, index) in search_results">
-                            <div :key="index">
-                                <p x-text="search.symbol + ' - ' + search.name"></p>
-                            </div>
-                        </template>
-                    </div>
-                </div>
-            </div>
-
-            <div class="sm:hidden">
+            <div>
                 <div class="relative text-gray-400 focus-within:text-gray-600">
                     <label for="tk-form-layouts-search" class="sr-only">Search</label>
                     <input type="search" x-model="query" id="tk-form-layouts-search"
                         class="form-input block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:border-blue-300 focus:shadow-outline-blue sm:text-sm transition duration-150 ease-in-out"
-                        @input.debounce="search">
+                        @input.debounce="search" placeholder="Search ...">
                     <div class="absolute inset-y-0 left-0 flex items-center px-4">
                         <svg class="hi-solid hi-search inline-block w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
