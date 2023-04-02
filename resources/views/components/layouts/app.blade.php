@@ -22,7 +22,8 @@
       <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
       <!-- Alpine.js, uncomment if you would like to use Tailkit’s Alpine JS based components -->
-      {{-- <script src="//unpkg.com/alpinejs" defer></script> --}}
+      <script src="https://unpkg.com/alpinejs" defer></script>
+      <script scr="https://unpkg.com/axios/dist/axios.min.js"></script> 
 </head>
   
 <body>
