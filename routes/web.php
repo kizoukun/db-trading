@@ -50,4 +50,7 @@ Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenti
     Route::delete("/stocks/{id}", [Dashboard\StocksController::class, "cancelBuyOpenOrders"]);
 });
 
-Route::get('/search', [StockController::class, 'search']);
+Route::group(["prefix" => "api/v1"], function() {
+    Route::get('/search', [StockController::class, 'search']);
+});
+

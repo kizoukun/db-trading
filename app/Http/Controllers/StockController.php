@@ -11,9 +11,9 @@ class StockController extends Controller
         $query = $request->input('query');
         $stocks = DB::select("SELECT * FROM stocks WHERE symbol LIKE ? OR name LIKE ? LIMIT 10", ["%$query%", "%$query%"]);
 
-        if ($stocks->isEmpty()) {
+        if (count($stocks) < 1) {
             return response()->json(['message' => 'No Matchin results found.'], 404);
         }
-        return response()->json($stocks);
+        return response()->json($stocks, 200);
     }
 }

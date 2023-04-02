@@ -1,4 +1,4 @@
-<header id="page-header"
+<header  x-data="searchJs" id="page-header"
     class="flex flex-none items-center h-16 bg-white shadow-sm fixed top-0 right-0 left-0 z-30 lg:pl-64">
     <div class="flex justify-between max-w-10xl mx-auto px-4 lg:px-8 w-full">
         <!-- Left Section -->
@@ -33,7 +33,7 @@
 
             <!-- Search -->
             <div class="hidden sm:block">
-                <form @submit.prevent="search" action="{{ url('/search') }}" class="flex items-center">
+                <form @submit.prevent="search" class="flex items-center">
                     <input type="search" placeholder="Search" x-model="query" id="tk-form-layouts-search"
                         class="form-input w-full md:w-2/3 lg:w-3/4 py-2 px-4 border border-gray-300 rounded-lg leading-5 text-gray-400 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50"
                         @input.debounce="search">
@@ -174,31 +174,39 @@
 </header>
 
 <script>
-    const search = async () => {
-        const query = document.getElementById('tk-form-layouts-search').value;
-        if (query.length > 2) {
-            try {
-                const response = await fetch(`/search?query=${query}`);
-                const stocks = await response.json();
-                // Display the search results on the page.
-                displaySearchResults(stocks);
-            } catch (error) {
-                console.error('Error fetching search results:', error);
+    function searchJs() {
+        return {
+            query: "",
+            search_results: undefined,
+            async search() {
+
+                try {
+                    const response = await fetch(`/api/v1/search?query=${this.query}`);
+                    const stocks = await response.json();
+
+                    //still not working as there isn't a way to display the results yet
+                    if(response.status === 200) {
+                        // this.search_results = stocks;
+                        this.displaySearchResults(stocks);
+                    }
+                } catch (err) {
+                    console.error(err);
+                }
+            },
+            displaySearchResults(stocks) {
+                // Clear any existing results.
+                const resultsContainer = document.getElementById('search-results');
+                resultsContainer.innerHTML = '';
+                stocks.forEach((stock) => {
+                    // Create a new element for each result.
+                    const result = document.createElement('div');
+                    result.innerHTML = `
+                        <div><strong>${stock.symbol}</strong></div>
+                        <div>${stock.name}</div>
+                    `;
+                    resultsContainer.appendChild(result);
+                });
             }
         }
-    };
-    const displaySearchResults = (stocks) => {
-        // Clear any existing results.
-        const resultsContainer = document.getElementById('search-results');
-        resultsContainer.innerHTML = '';
-        stocks.forEach((stock) => {
-            // Create a new element for each result.
-            const result = document.createElement('div');
-            result.innerHTML = `
-            <div><strong>${stock.symbol}</strong></div>
-            <div>${stock.name}</div>
-        `;
-            resultsContainer.appendChild(result);
-        });
-    };
+    }
 </script>
