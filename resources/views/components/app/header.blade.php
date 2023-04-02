@@ -210,30 +210,14 @@
                     const response = await fetch(`/api/v1/search?query=${this.query}`);
                     const stocks = await response.json();
 
-                    //still not working as there isn't a way to display the results yet
                     if(response.status === 200) {
                         this.search_results = stocks;
-                        // this.displaySearchResults(stocks);
                     } else {
                         this.search_results = undefined;
                     }
                 } catch (err) {
                     console.error(err);
                 }
-            },
-            displaySearchResults(stocks) {
-                // Clear any existing results.
-                const resultsContainer = document.getElementById('search-results');
-                resultsContainer.innerHTML = '';
-                stocks.forEach((stock) => {
-                    // Create a new element for each result.
-                    const result = document.createElement('div');
-                    result.innerHTML = `
-                        <div><strong>${stock.symbol}</strong></div>
-                        <div>${stock.name}</div>
-                    `;
-                    resultsContainer.appendChild(result);
-                });
             }
         }
     }
