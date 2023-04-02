@@ -1,12 +1,12 @@
 <header  x-data="searchJs" id="page-header"
-    class="flex flex-none items-center h-16 bg-white shadow-sm fixed top-0 right-0 left-0 z-30 lg:pl-64">
+    class="flex flex-none items-center h-16 bg-white shadow-sm fixed top-0 right-0 left-0 z-30 lg:pl-64 duration-500">
     <div class="flex justify-between max-w-10xl mx-auto px-4 lg:px-8 w-full">
         <!-- Left Section -->
         <div class="flex items-center space-x-2">
 
             <!-- Toggle Sidebar on Mobile -->
             <div>
-                <button type="button"
+                <button type="button" onclick="toggleSidebar()"
                     class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-6 rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none">
                     <svg class="hi-solid hi-menu-alt-1 inline-block w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg">
