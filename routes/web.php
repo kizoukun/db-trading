@@ -56,10 +56,21 @@ Route::group(["prefix" => "api/v1"], function() {
 });
 
 Route::Group(["prefix" => "admin", "middleware" => [Middleware\EnsureAuthenticated::class, Middleware\AdminMiddleware::class]], function() {
-    Route::get("/stocks", [Admin\StocksController::class, "show"]);
-    Route::get("/stocks/create", [Admin\StocksController::class, "create"]);
-    Route::post("/stocks/create", [Admin\StocksController::class, "createStore"]);
-    Route::get("/stocks/{id}", [Admin\StocksController::class, "edit"]);
-    Route::put("/stocks/{id}", [Admin\StocksController::class, "update"]);
-    Route::delete("/stocks/{id}", [Admin\StocksController::class, "delete"]);
+    Route::group(["prefix" => "users"], function() {
+        Route::get("/", [Admin\UsersController::class, "show"]);
+        Route::get("/create", [Admin\UsersController::class, "create"]);
+        Route::post("/create", [Admin\UsersController::class, "createStore"]);
+        Route::get("/{id}", [Admin\UsersController::class, "edit"]);
+        Route::put("/{id}", [Admin\UsersController::class, "update"]);
+        Route::delete("/{id}", [Admin\UsersController::class, "delete"]);
+    });
+    Route::group(["prefix" => "stocks"], function() {
+        Route::get("/", [Admin\StocksController::class, "show"]);
+        Route::get("/create", [Admin\StocksController::class, "create"]);
+        Route::post("/create", [Admin\StocksController::class, "createStore"]);
+        Route::get("/{id}", [Admin\StocksController::class, "edit"]);
+        Route::put("/{id}", [Admin\StocksController::class, "update"]);
+        Route::delete("/{id}", [Admin\StocksController::class, "delete"]);
+    });
+
 });
