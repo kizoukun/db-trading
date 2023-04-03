@@ -68,7 +68,7 @@
                 <button type="button"  @click="profileOpen = !profileOpen"
                     class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none"
                     id="tk-dropdown-layouts-user" aria-haspopup="true" aria-expanded="true">
-                    <span>{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</span>
+                    <span>{{ auth()->user()->first_name }} <span class="hidden md:inline">{{ auth()->user()->last_name }}</span></span>
                     <svg class="hi-solid hi-chevron-down inline-block w-5 h-5 opacity-50" fill="currentColor"
                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
