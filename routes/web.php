@@ -31,7 +31,7 @@ Route::post("/auth/login", [LoginController::class, "login"])->middleware(NotAut
 Route::get("/auth/register", [RegisterController::class, "index"])->middleware(NotAuthenticated::class)->name('register');
 Route::post("/auth/register", [RegisterController::class, "store"])->middleware(NotAuthenticated::class)->name('registeruser');
 
-Route::get("/auth/logout", function(Request $request) {
+Route::delete("/auth/logout", function(Request $request) {
     $user = Auth::user();
     if ($user) {
         $user->setRememberToken(null);
