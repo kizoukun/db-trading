@@ -55,7 +55,7 @@ Route::group(["prefix" => "api/v1"], function() {
     Route::get('/search', [StockController::class, 'search']);
 });
 
-Route::Group(["prefix" => "admin", "middleware" => Middleware\EnsureAuthenticated::class], function() {
+Route::Group(["prefix" => "admin", "middleware" => [Middleware\EnsureAuthenticated::class, Middleware\AdminMiddleware::class]], function() {
     Route::get("/stocks", [Admin\StocksController::class, "show"]);
     Route::get("/stocks/create", [Admin\StocksController::class, "create"]);
     Route::post("/stocks/create", [Admin\StocksController::class, "createStore"]);

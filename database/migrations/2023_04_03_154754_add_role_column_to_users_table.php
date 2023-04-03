@@ -11,9 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('open_orders', function (Blueprint $table) {
-            //
-            $table->foreignId("order_id")->after("id")->references("id")->on("orders");
+        Schema::table('users', function (Blueprint $table) {
+            $table->integer("role")->after("password")->default(0);
         });
     }
 
@@ -22,8 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('open_orders', function (Blueprint $table) {
-            $table->dropColumn("order_id");
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropColumn("role");
         });
     }
 };
