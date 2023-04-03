@@ -38,7 +38,7 @@
                     <div class="max-h-[80px]">
                         <template x-for="(search, index) in search_results">
                             <div :key="index">
-                                <p x-text="search.symbol + ' - ' + search.name"></p>
+                                <a :href="'/dashboard/stocks/' + search.symbol" x-text="search.symbol + ' - ' + search.name"></a>
                             </div>
                         </template>
                     </div>

@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->string("symbol")->unique()->primary();
             $table->string("name");
-            $table->string("description");
+            $table->longText("description");
             $table->decimal("total_shares", 32, 2);
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

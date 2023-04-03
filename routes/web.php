@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\NotAuthenticated;
 use App\Http\Middleware;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\StockController;
 
 /*
@@ -54,3 +55,11 @@ Route::group(["prefix" => "api/v1"], function() {
     Route::get('/search', [StockController::class, 'search']);
 });
 
+Route::Group(["prefix" => "admin", "middleware" => Middleware\EnsureAuthenticated::class], function() {
+    Route::get("/stocks", [Admin\StocksController::class, "show"]);
+    Route::get("/stocks/create", [Admin\StocksController::class, "create"]);
+    Route::post("/stocks/create", [Admin\StocksController::class, "createStore"]);
+    Route::get("/stocks/{id}", [Admin\StocksController::class, "edit"]);
+    Route::put("/stocks/{id}", [Admin\StocksController::class, "update"]);
+    Route::delete("/stocks/{id}", [Admin\StocksController::class, "delete"]);
+});
