@@ -78,6 +78,10 @@ Route::Group(["prefix" => "admin", "middleware" => [Middleware\EnsureAuthenticat
     });
     Route::group(["prefix" => "bank-list"], function() {
         Route::get("/", [Admin\BankListController::class, "show"]);
+        Route::get("/create", [Admin\BankListController::class, "create"]);
+        Route::post("/create", [Admin\BankListController::class, "createStore"]);
+        Route::get("/{id}", [Admin\BankListController::class, "edit"]);
+        Route::put("/{id}", [Admin\BankListController::class, "update"]);
         Route::delete("/{id}", [Admin\BankListController::class, "delete"]);
     });
     Route::group(["prefix" => "notifications"], function() {
