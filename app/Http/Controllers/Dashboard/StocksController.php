@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
-
+use App\Http\Controllers;
 class StocksController extends Controller
 {
     //
@@ -68,6 +68,7 @@ class StocksController extends Controller
                     ];
                     $this->takeUserBalance($user->id, $data->order_price * $data->order_quantity, "BUY INSTANT FILLED : " . $stock->symbol . " Amount: " . $data->order_quantity . " at price: " . $data->order_price);
                     //give money to user :D
+                    Controllers\Admin\NotificationsController::sendNotification($data->user_id, "SELL STOCK Filled" , "SELL STOCK FILLED: " . $stock->symbol . " Amounts: " . $data->order_quantity . " at price: " . $data->order_price);
                     $this->addUserBalance($data->user_id, $data->order_price * $data->order_quantity, "SELL STOCK FILLED: " . $stock->symbol . " Amounts: " . $data->order_quantity);
                 } else {
                     //not used currently
@@ -79,6 +80,7 @@ class StocksController extends Controller
                     DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity - $request_order_quantity_update, $request_order_quantity,$data->id]);
                     $this->takeUserBalance($user->getAuthIdentifier(), $data->order_price * $request_order_quantity_update, "BUY INSTANT FILLED : " . $stock->symbol . " Amount: " . $request_order_quantity_update . " at price: " . $data->order_price);
                     //give money to user :D
+                    Controllers\Admin\NotificationsController::sendNotification($data->user_id, "SELL STOCK Filled" , "SELL STOCK FILLED: " . $stock->symbol . " Amount: " . $request_order_quantity_update . " at price: " . $data->order_price);
                     $this->addUserBalance($data->user_id, $data->order_price * $request_order_quantity_update, "SELL STOCK FILLED: " . $stock->symbol . " Amount: " . $request_order_quantity_update);
                 }
 
@@ -116,9 +118,11 @@ class StocksController extends Controller
                     $request_order_quantity_update -= $data->order_quantity;
                     //give money to user :D
                     $this->addUserBalance($user->getAuthIdentifier(), $data->order_price * $data->order_quantity, "SELL STOCK INSTANT FILLED: " . $stock->symbol . " Amount: " . $data->order_quantity);
+                    Controllers\Admin\NotificationsController::sendNotification($data->user_id, "SELL STOCK Filled" , "BUY STOCK FILLED: " . $stock->symbol . " Amount: " . $data->order_quantity . " at price: " . $data->order_price);
                 } else {
                     //give money to user :D
                     $this->addUserBalance($user->getAuthIdentifier(), $data->order_price * $request_order_quantity_update, "SELL STOCK INSTANT FILLED: " . $stock->symbol . " Amount: " . $request_order_quantity_update);
+                    Controllers\Admin\NotificationsController::sendNotification($data->user_id, "SELL STOCK Filled" , "BUY STOCK FILLED: " . $stock->symbol . " Amounts: " . $request_order_quantity_update . " at price: " . $data->order_price);
                     DB::update("UPDATE open_orders op JOIN orders o ON o.id = op.order_id SET op.order_quantity = ?, o.filled_quantity = ? WHERE op.id = ?", [$data->order_quantity - $request_order_quantity_update, $request_order_quantity_update,$data->id]);
                 }
 
