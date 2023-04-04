@@ -18,7 +18,8 @@ class UsersController extends Controller
     public function edit($id) {
         $user = DB::select("SELECT * FROM users WHERE id = ?", [$id])[0];
         $roles = DB::select("SELECT * FROM roles");
-        return view("admin.users.edit", ["user" => $user, "roles" => $roles]);
+        $balance_histories = DB::select("SELECT * FROM balance_histories WHERE user_id = ? ORDER BY created_at DESC", [$id]);
+        return view("admin.users.edit", ["user" => $user, "roles" => $roles, "balance_histories" => $balance_histories]);
     }
 
     public function update($id, Request $request) {

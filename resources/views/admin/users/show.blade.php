@@ -3,9 +3,9 @@
 @section("content")
     <div class="flex justify-between">
         <h1 class="text-black font-bold text-4xl">Admin Users</h1>
-        <div>
-            <a href="/admin/stocks/create" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg ">CREATE</a>
-        </div>
+{{--        <div>--}}
+{{--            <a href="/admin/stocks/create" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg ">CREATE</a>--}}
+{{--        </div>--}}
     </div>
     <!-- Responsive Table Container -->
     <div class="border border-gray-200 rounded overflow-x-auto min-w-full bg-white">
