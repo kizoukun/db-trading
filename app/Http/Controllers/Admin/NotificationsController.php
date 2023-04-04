@@ -36,6 +36,25 @@ class NotificationsController extends Controller
         return redirect()->intended("/admin/notifications");
     }
 
+    public function edit($id) {
+        $notification = DB::select("SELECT * FROM notifications WHERE id = ?", [$id]);
+        $users = DB::select("SELECT * FROM users");
+        return view("admin.Notifications.edit", ["notification" => $notification[0], "users" => $users]);
+    }
+
+    public function update($id, Request $request) {
+        $this->validate($request, [
+            "userId" => "required",
+            "title" => "required",
+            "description" => "required"
+        ]);
+        $userId = $request->input("userId");
+        $title = $request->input("title");
+        $description = $request->input("description");
+        DB::update("UPDATE notifications SET user_id = ?, title = ?, description = ?, send_at = NULL WHERE id = ?", [$userId, $title, $description, $id]);
+        return redirect()->intended("/admin/notifications");
+    }
+
     public static function sendNotification($userId, $title, $description) {
         DB::insert("INSERT INTO notifications (user_id, title, description) VALUES (?, ?, ?)", [$userId, $title, $description]);
     }

@@ -2,7 +2,7 @@
 
 @section("content")
     <div class="flex justify-between">
-        <h1 class="text-black font-bold text-4xl">Admin Open Orders</h1>
+        <h1 class="text-black font-bold text-4xl">Admin Bank List</h1>
     </div>
     <!-- Responsive Table Container -->
     <div class="border border-gray-200 rounded overflow-x-auto min-w-full bg-white">
