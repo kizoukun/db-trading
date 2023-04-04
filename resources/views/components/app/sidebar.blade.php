@@ -22,7 +22,7 @@
   <div class="overflow-y-auto">
     <div class="p-4 w-full">
       <nav class="space-y-1">
-        <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-700 bg-gray-100">
+        <a href="/dashboard" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-700 bg-gray-100">
           <span class="flex-none flex items-center opacity-50">
             <svg class="hi-outline hi-home inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
           </span>
@@ -76,12 +76,61 @@
           </span>
           <span class="py-2 grow">Settings</span>
         </a>
-        <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
-          <span class="flex-none flex items-center opacity-50">
-            <svg class="hi-outline hi-lock-open inline-block w-5 h-5 text-red-600" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
-          </span>
-          <span class="py-2 grow">Log out</span>
-        </a>
+          <form method="POST" action="/auth/logout">
+                @csrf
+                @method("DELETE")
+              <button type="submit" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+                      <span class="flex-none flex items-center opacity-50">
+                        <svg class="hi-outline hi-lock-open inline-block w-5 h-5 text-red-600" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 11V7a4 4 0 118 0m-4 8v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2z"/></svg>
+                      </span>
+                  <span class="py-2 grow">Log out</span>
+              </button>
+          </form>
+          @if(Auth::user()->role_id > 1)
+          <div class="px-3 pt-5 pb-2 text-xs font-medium uppercase tracking-wider text-gray-500">Admin</div>
+              <a href="/admin/stocks" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+                  <span class="flex-none flex items-center opacity-50">
+                    <svg class="hi-outline hi-user inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                  </span>
+                  <span class="py-2 grow">Stocks</span>
+              </a>
+              <a href="/admin/users" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+                  <span class="flex-none flex items-center opacity-50">
+                    <svg class="hi-outline hi-user inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                  </span>
+                  <span class="py-2 grow">Users</span>
+              </a>
+              <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+                  <span class="flex-none flex items-center opacity-50">
+                    <svg class="hi-outline hi-user inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                  </span>
+                  <span class="py-2 grow">Open Orders</span>
+              </a>
+              <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+                  <span class="flex-none flex items-center opacity-50">
+                    <svg class="hi-outline hi-user inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                  </span>
+                  <span class="py-2 grow">Deposit Histories</span>
+              </a>
+              <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+                  <span class="flex-none flex items-center opacity-50">
+                    <svg class="hi-outline hi-user inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                  </span>
+                  <span class="py-2 grow">Withdraw Histories</span>
+              </a>
+              <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+                  <span class="flex-none flex items-center opacity-50">
+                    <svg class="hi-outline hi-user inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                  </span>
+                  <span class="py-2 grow">Notifications</span>
+              </a>
+              <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+                  <span class="flex-none flex items-center opacity-50">
+                    <svg class="hi-outline hi-user inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                  </span>
+                  <span class="py-2 grow">Bank Lists</span>
+              </a>
+          @endif
       </nav>
     </div>
   </div>

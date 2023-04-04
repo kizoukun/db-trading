@@ -38,7 +38,7 @@
                     <div class="max-h-[80px]">
                         <template x-for="(search, index) in search_results">
                             <div :key="index">
-                                <p x-text="search.symbol + ' - ' + search.name"></p>
+                                <a :href="'/dashboard/stocks/' + search.symbol" x-text="search.symbol + ' - ' + search.name"></a>
                             </div>
                         </template>
                     </div>
@@ -68,7 +68,7 @@
                 <button type="button"  @click="profileOpen = !profileOpen"
                     class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-gray-300 bg-white text-gray-800 shadow-sm hover:text-gray-800 hover:bg-gray-100 hover:border-gray-300 hover:shadow focus:ring focus:ring-gray-500 focus:ring-opacity-25 active:bg-white active:border-white active:shadow-none"
                     id="tk-dropdown-layouts-user" aria-haspopup="true" aria-expanded="true">
-                    <span>Admin</span>
+                    <span>{{ auth()->user()->first_name }} <span class="hidden md:inline">{{ auth()->user()->last_name }}</span></span>
                     <svg class="hi-solid hi-chevron-down inline-block w-5 h-5 opacity-50" fill="currentColor"
                         viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd"
@@ -130,7 +130,9 @@
                             </a>
                         </div>
                         <div class="p-2 space-y-1">
-                            <form onsubmit="return false;">
+                            <form action="/auth/logout" method="POST">
+                                @csrf
+                                @method("DELETE")
                                 <button type="submit" role="menuitem"
                                     class="w-full text-left flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
                                     <svg class="hi-solid hi-lock-closed inline-block w-5 h-5 opacity-50"

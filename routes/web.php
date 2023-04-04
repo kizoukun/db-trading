@@ -7,6 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Middleware\NotAuthenticated;
 use App\Http\Middleware;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\Admin;
 use App\Http\Controllers\StockController;
 
 /*
@@ -30,7 +31,7 @@ Route::post("/auth/login", [LoginController::class, "login"])->middleware(NotAut
 Route::get("/auth/register", [RegisterController::class, "index"])->middleware(NotAuthenticated::class)->name('register');
 Route::post("/auth/register", [RegisterController::class, "store"])->middleware(NotAuthenticated::class)->name('registeruser');
 
-Route::get("/auth/logout", function(Request $request) {
+Route::delete("/auth/logout", function(Request $request) {
     $user = Auth::user();
     if ($user) {
         $user->setRememberToken(null);
@@ -54,3 +55,22 @@ Route::group(["prefix" => "api/v1"], function() {
     Route::get('/search', [StockController::class, 'search']);
 });
 
+Route::Group(["prefix" => "admin", "middleware" => [Middleware\EnsureAuthenticated::class, Middleware\AdminMiddleware::class]], function() {
+    Route::group(["prefix" => "users"], function() {
+        Route::get("/", [Admin\UsersController::class, "show"]);
+        Route::get("/create", [Admin\UsersController::class, "create"]);
+        Route::post("/create", [Admin\UsersController::class, "createStore"]);
+        Route::get("/{id}", [Admin\UsersController::class, "edit"]);
+        Route::put("/{id}", [Admin\UsersController::class, "update"]);
+        Route::delete("/{id}", [Admin\UsersController::class, "delete"]);
+    });
+    Route::group(["prefix" => "stocks"], function() {
+        Route::get("/", [Admin\StocksController::class, "show"]);
+        Route::get("/create", [Admin\StocksController::class, "create"]);
+        Route::post("/create", [Admin\StocksController::class, "createStore"]);
+        Route::get("/{id}", [Admin\StocksController::class, "edit"]);
+        Route::put("/{id}", [Admin\StocksController::class, "update"]);
+        Route::delete("/{id}", [Admin\StocksController::class, "delete"]);
+    });
+
+});
