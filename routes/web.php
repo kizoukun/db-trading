@@ -72,5 +72,13 @@ Route::Group(["prefix" => "admin", "middleware" => [Middleware\EnsureAuthenticat
         Route::put("/{id}", [Admin\StocksController::class, "update"]);
         Route::delete("/{id}", [Admin\StocksController::class, "delete"]);
     });
+    Route::group(["prefix" => "open-orders"], function() {
+        Route::get("/", [Admin\OpenOrdersController::class, "show"]);
+        Route::delete("/{id}", [Admin\OpenOrdersController::class, "delete"]);
+    });
+    Route::group(["prefix" => "bank-list"], function() {
+        Route::get("/", [Admin\BankListController::class, "show"]);
+        Route::delete("/{id}", [Admin\BankListController::class, "delete"]);
+    });
 
 });
