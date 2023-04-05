@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignUuid("user_id")->references("id")->on("users");
             $table->string("title");
             $table->string("description");
-            $table->date("send_at");
+            $table->date("send_at")->nullable();
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

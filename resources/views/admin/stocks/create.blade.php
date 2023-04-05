@@ -1,7 +1,7 @@
 @extends('components.layouts.app')
 
 @section("content")
-<div class="px-24">
+<div class="px-0 md:px-12 lg:px-24">
     <form class="space-y-6 bg-white p-3 rounded-md" action="/admin/stocks/create" method="post">
         <h1 class="text-black font-bold text-4xl mb-4">Create Stock</h1>
         @csrf
