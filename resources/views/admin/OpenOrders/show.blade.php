@@ -39,7 +39,7 @@
                     </div>
                     <input
                         class="block border border-gray-200 rounded pl-10 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                        type="text" placeholder="Search all orders.." />
+                        type="text" placeholder="Search stocks" />
                 </div>
             </div>
             <!-- END Card Header -->
@@ -54,31 +54,31 @@
                         <thead>
                             <tr class="bg-gray-50">
                                 <th
-                                    class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-left">
+                                    class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-left">
                                     ID
                                 </th>
                                 <th
-                                    class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-left">
+                                    class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-left">
                                     Order ID
                                 </th>
                                 <th
-                                    class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-left">
+                                    class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-left">
                                     Stock Symbol
                                 </th>
                                 <th
-                                    class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-center">
+                                    class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-center">
                                     Order Type
                                 </th>
                                 <th
-                                    class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-center">
+                                    class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-center">
                                     Order Quantity
                                 </th>
                                 <th
-                                    class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-center">
+                                    class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-center">
                                     Price
                                 </th>
                                 <th
-                                    class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-center">
+                                    class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-center">
                                     Actions
                                 </th>
                             </tr>

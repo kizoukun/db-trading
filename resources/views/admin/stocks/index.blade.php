@@ -1,35 +1,65 @@
 @extends('components.layouts.app')
 
 @section("content")
-    <div class="flex justify-between">
-        <h1 class="text-black font-bold text-4xl">Admin Stocks</h1>
-        <div>
-            <a href="/admin/stocks/create" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg ">CREATE</a>
+<!-- Form -->
+<form onsubmit="return false;">
+    <!-- Card -->
+    <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
+      <!-- Card Header -->
+      <div class="py-4 px-5 lg:px-6 w-full bg-gray-50 sm:flex sm:justify-between sm:items-center">
+        <div class="text-center sm:text-left">
+          <h3 class="font-semibold">
+            All Stocks
+          </h3>
+          <h4 class="text-gray-500 text-sm">
+            You have <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-400">10 new orders</a>
+          </h4>
         </div>
-    </div>
-    <!-- Responsive Table Container -->
+        <div class="mt-3 sm:mt-0 text-center sm:text-right sm:w-48">
+          <select class="block border border-gray-200 rounded px-3 py-2 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+            <option>Today</option>
+            <option>Last 7 days</option>
+            <option>Last 15 days</option>
+            <option selected="selected">Last 30 days</option>
+            <option>Last Year</option>
+          </select>
+        </div>
+      </div>
+      <div class="p-5 lg:p-6 grow w-full border-b border-gray-100">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 w-10 my-px ml-px flex items-center justify-center pointer-events-none rounded-l text-gray-500">
+            <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="hi-solid hi-search inline-block w-5 h-5"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+          </div>
+          <input class="block border border-gray-200 rounded pl-10 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" type="text" placeholder="Search all orders.." />
+        </div>
+      </div>
+      <!-- END Card Header -->
+      
+      <!-- Card Body -->
+      <div class="p-5 lg:p-6 grow w-full">
+        <!-- Responsive Table Container -->
     <div class="border border-gray-200 rounded overflow-x-auto min-w-full bg-white">
         <!-- Alternate Responsive Table -->
         <table class="min-w-full text-sm align-middle">
             <!-- Table Header -->
             <thead>
             <tr class="bg-gray-50">
-                <th class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase hidden md:table-cell text-center">
+                <th class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase hidden md:table-cell text-center">
                     Image
                 </th>
-                <th class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-left">
+                <th class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-left">
                     Symbol
                 </th>
-                <th class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase hidden md:table-cell text-left">
+                <th class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase hidden md:table-cell text-left">
                     Name
                 </th>
-                <th class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-center">
+                <th class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-center">
                     Description
                 </th>
-                <th class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-center">
+                <th class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-center">
                     Total Shares
                 </th>
-                <th class="p-3 text-gray-700 bg-gray-100 font-semibold text-sm tracking-wider uppercase text-center">
+                <th class="p-3 text-white bg-black font-semibold text-sm tracking-wider uppercase text-center">
                     Actions
                 </th>
             </tr>
@@ -90,4 +120,16 @@
         })
     </script>
     <!-- END Responsive Table Container -->
+      </div>
+      <!-- END Card Body -->
+    </div>
+    <!-- END Card -->
+  </form>
+  <!-- END Form -->
+    <div class="flex justify-between">
+        <h1 class="text-black font-bold text-4xl">Admin Stocks</h1>
+        <div>
+            <a href="/admin/stocks/create" class="bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-lg ">CREATE</a>
+        </div>
+    </div>
 @endsection
