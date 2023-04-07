@@ -7,15 +7,6 @@
             @csrf
             @method("PUT")
             <!-- END Input with text append alt -->
-{{--            <div class="space-y-1">--}}
-{{--                <label for="tk-form-input-groups-append-text-addon-normal" class="font-medium">Code</label>--}}
-{{--                <div class="relative">--}}
-{{--                    <input name="code" type="number" placeholder="Bank Code" class="block border border-gray-200 rounded pr-20 pl-3 py-2 leading-6 w-full focus:border-blue-500 focus:ring focus:ring-blue-500 focus:ring-opacity-50" id="tk-form-input-groups-append-text-addon-normal" />--}}
-{{--                    <div class="absolute inset-y-0 right-0 w-16 my-px mr-px flex items-center justify-center pointer-events-none rounded-r text-gray-500 bg-gray-100 border-l border-gray-200">--}}
-{{--                        Int--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
             <div class="space-y-1">
                 <label for="tk-form-input-groups-append-text-addon-normal" class="font-medium">Name</label>
                 <div class="relative">
@@ -53,7 +44,7 @@
                     </ul>
                 </div>
             @endif
-            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-3 w-full">CREATE</button>
+            <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white rounded-lg p-3 w-full">UPDATE</button>
         </form>
     </div>
 @endsection

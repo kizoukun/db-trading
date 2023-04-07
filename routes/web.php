@@ -92,5 +92,16 @@ Route::Group(["prefix" => "admin", "middleware" => [Middleware\EnsureAuthenticat
         Route::put("/{id}", [Admin\NotificationsController::class, "update"]);
         Route::delete("/{id}", [Admin\NotificationsController::class, "delete"]);
     });
-
+    Route::group(["prefix" => "deposits"], function() {
+        Route::get("/", [Admin\DepositsController::class, "show"]);
+        Route::get("/{id}", [Admin\DepositsController::class, "edit"]);
+        Route::put("/{id}", [Admin\DepositsController::class, "update"]);
+        Route::delete("/{id}", [Admin\DepositsController::class, "delete"]);
+    });
+    Route::group(["prefix" => "withdraws"], function() {
+        Route::get("/", [Admin\WithdrawsController::class, "show"]);
+        Route::get("/{id}", [Admin\WithdrawsController::class, "edit"]);
+        Route::put("/{id}", [Admin\WithdrawsController::class, "update"]);
+        Route::delete("/{id}", [Admin\WithdrawsController::class, "delete"]);
+    });
 });
