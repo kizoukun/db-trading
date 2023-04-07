@@ -13,7 +13,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('bank_list', function (Blueprint $table) {
-            $table->integer("code")->unique()->primary();
+            $table->id();
+            $table->integer("code")->unique();
             $table->string("name");
             $table->decimal("min_withdraw", 32, 2);
             $table->decimal("max_withdraw", 32, 2);

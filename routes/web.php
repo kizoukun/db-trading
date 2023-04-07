@@ -48,7 +48,8 @@ Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenti
     Route::get("/marketplace/{symbol}", [Dashboard\MarketplaceController::class, "index"]);
     Route::get("/notifications", [Dashboard\NotificationsController::class, "show"]);
     Route::get("/balance", [Dashboard\BalanceController::class, "show"]);
-    Route::post("/deposit", [Dashboard\DepositController::class, "store"]);
+    Route::post("/balance/deposit", [Dashboard\BalanceController::class, "storeDeposit"]);
+    Route::post("/balance/withdraw", [Dashboard\BalanceController::class, "storeWithdraw"]);
     Route::get("/bank", [Dashboard\BankController::class, "index"]);
     Route::post("/bank", [Dashboard\BankController::class, "store"]);
     Route::get('/settings', [SettingsController::class, 'index']);

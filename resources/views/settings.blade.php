@@ -2,7 +2,7 @@
 
 @section('content')
     <!-- Content area -->
-    
+
     <!-- Main modal -->
     <div id="new-bank-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
         <div class="relative w-full h-full max-w-md md:h-auto">
@@ -13,18 +13,18 @@
                     <span class="sr-only">Close modal</span>
                 </button>
                 <div class="px-6 py-6 lg:px-8">
-                    <h3 class="mb-4 text-xl font-medium text-gray-900">Sign in to our platform</h3>
+                    <h3 class="mb-4 text-xl font-medium text-gray-900">ADD NEW BANK</h3>
                     <form class="space-y-6" action="{{url('/dashboard/settings/banks')}}" method="POST">
                         @csrf
                         <div>
                             <label for="account_no" class="block mb-2 text-sm font-medium text-gray-900">Account Number</label>
-                            <input type="text" name="account_no" id="account_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="account number" required>
+                            <input type="text" name="account_no" id="account_no" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                         </div>
                         <div>
                             <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Select Bank</label>
-                            <select name="bank_code" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                            <select name="bank_id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                                 @foreach($bank_list as $bank)
-                                <option value="{{$bank->code}}">{{$bank->name}}</option>
+                                <option value="{{$bank->id}}">{{$bank->name}}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -33,7 +33,7 @@
                 </div>
             </div>
         </div>
-    </div> 
+    </div>
 
     <main class="flex-1">
         <div class="relative mx-auto max-w-4xl md:px-8 xl:px-0">
@@ -65,7 +65,7 @@
                                         class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Password</a>
                                     <a href="#banks" id="tab-nav-banks"
                                         class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Bank List</a>
-                                   
+
                                 </nav>
                             </div>
                         </div>
@@ -86,8 +86,8 @@
 
                             <!-- Card Body: Change Password -->
                             <div class="p-5 lg:p-6 grow w-full md:flex md:space-x-5">
-                                
-             
+
+
                                 <form method="post" action="settings/profile" class="space-y-6 md:w-full">
                                     @csrf
                                     @if ($errors->any())
@@ -99,7 +99,7 @@
         </ul>
     </div>
 @endif
- 
+
                                     <div class="space-y-1">
                                         <label for="tk-form-layouts-multiple-cards-password" class="font-medium">
                                             First Name</label>
@@ -118,7 +118,7 @@
                                             class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
                                             type="text" id="tk-form-layouts-multiple-cards-password" />
                                     </div>
-  
+
                                     <button type="submit"
                                         class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
                                         Update
@@ -148,7 +148,7 @@
 
                             <!-- Card Body: Change Password -->
                             <div class="p-5 lg:p-6 grow w-full md:flex md:space-x-5">
-                                
+
                                 <p class="md:flex-none md:w-1/3 text-gray-500 text-sm mb-5">
                                     Changing your sign in password is an easy way to keep your account secure.
                                 </p>
@@ -163,7 +163,7 @@
                                             </ul>
                                         </div>
                                     @endif
- 
+
                                     <div class="space-y-1">
                                         <label for="tk-form-layouts-multiple-cards-password" class="font-medium">Current
                                             Password</label>
@@ -223,7 +223,7 @@
 
                             <!-- Card Body: Change Banks -->
                             <div class="p-5 lg:p-6 grow w-full md:flex md:space-x-5">
-                                
+
                                 <table class="w-full table-auto">
                                     <thead>
                                         <tr>
@@ -278,7 +278,7 @@
             }
         });
         setTimeout(() => {
-      
+
             if(window.location.hash.indexOf('#') > -1) {
                 let tabName = window.location.hash.replace('#', '')
                 tabs.forEach(tab => tab.classList.remove('border-purple-500', 'text-purple-600'));

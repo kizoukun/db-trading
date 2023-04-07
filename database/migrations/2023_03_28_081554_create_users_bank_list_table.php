@@ -15,10 +15,10 @@ return new class extends Migration
         Schema::create('users_bank_list', function (Blueprint $table) {
             $table->id();
             $table->uuid("user_id");
-            $table->integer("bank_code");
+            $table->unsignedBigInteger("bank_id");
             $table->integer("account_no");
             $table->foreign("user_id")->references("id")->on("users");
-            $table->foreign("bank_code")->references("code")->on("bank_list");
+            $table->foreign("bank_id")->references("id")->on("bank_list");
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });

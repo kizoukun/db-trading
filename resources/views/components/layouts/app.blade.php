@@ -50,7 +50,7 @@
             Closed 'lg:-translate-x-full'
             Opened 'lg:translate-x-0'
         -->
-        <x-app.sidebar />
+        <x-sidebar />
         <!-- END Sidebar Navigation -->
         <!-- Page Sidebar -->
 
@@ -95,10 +95,9 @@
     </div>
     <!-- END Page Container -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
-
+    @include('sweetalert::alert')
 </body>
 <script>
-    
     let open = true;
     document.addEventListener('DOMContentLoaded', function() {
         // code to be executed when the document is ready

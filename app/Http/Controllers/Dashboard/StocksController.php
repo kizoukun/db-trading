@@ -41,7 +41,7 @@ class StocksController extends Controller
         $user = auth()->user();
         if($order_type == "BUY") {
             $total_price = $order_price * $order_quantity;
-            if($total_price > $user->balance) {
+            if($total_price > ($user->balance ?? 0)) {
                 return back()->withErrors("Insufficient balance");
             }
             $sell_order = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND order_type = ? AND order_price <= ? AND user_id != ? ORDER BY order_price ASC", [$stock->symbol, "SELL", $order_price, $user->getAuthIdentifier()]);
@@ -155,7 +155,7 @@ class StocksController extends Controller
     }
 
 
-    private function addUserBalance($userId, $amount, $description) {
+    public static function addUserBalance($userId, $amount, $description) {
         DB::insert("INSERT INTO balance_histories (user_id, balance_before, balance_after, amount, description, type)
             SELECT
               user_id,
@@ -175,7 +175,7 @@ class StocksController extends Controller
         ", [$amount, $amount, $description, $userId]);
     }
 
-    private function takeUserBalance($userId, $amount, $description) {
+    public static function takeUserBalance($userId, $amount, $description) {
         DB::insert("INSERT INTO balance_histories (user_id, balance_before, balance_after, amount, description, type)
             SELECT
               user_id,

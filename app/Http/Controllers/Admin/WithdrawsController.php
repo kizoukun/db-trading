@@ -29,6 +29,10 @@ class WithdrawsController extends Controller
             "amount" => "required|numeric"
         ]);
         DB::update("UPDATE withdraw_histories SET status = ?, description = ?, amount = ? WHERE id = ?", [$request->input("status"), $request->input("description"), $request->input("amount"), $id]);
+        if($request->input("status") == "ACCEPTED") {
+            $data = DB::select("SELECT user_id, description FROM withdraw_histories WHERE id = ?", [$id]);
+            \App\Http\Controllers\Dashboard\StocksController::takeUserBalance($data[0]->user_id, $request->input("amount"), $data[0]->description);
+        }
         return redirect()->intended("/admin/withdraws");
     }
 }

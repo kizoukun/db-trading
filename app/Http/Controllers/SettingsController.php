@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class SettingsController extends Controller
 {
     public function index () {
-        $user_banks = DB::select("SELECT ubl.*, bl.name FROM users_bank_list ubl JOIN bank_list bl ON bl.code = ubl.bank_code WHERE ubl.user_id = ?", [auth()->id()]);
+        $user_banks = DB::select("SELECT ubl.*, bl.name, bl.code as bank_code FROM users_bank_list ubl JOIN bank_list bl ON bl.id = ubl.bank_id WHERE ubl.user_id = ?", [auth()->id()]);
         $bank_list = DB::select("SELECT * FROM bank_list");
         return view("settings", ["user_banks" => $user_banks, "bank_list" => $bank_list]);
     }
@@ -45,11 +46,11 @@ class SettingsController extends Controller
     public function save_bank(Request $request) {
         $request->validate([
             'account_no' => 'required|integer',
-            'bank_code' => 'required|integer',
+            'bank_id' => 'required|integer',
         ]);
 
         $user = Auth::user();
-        DB::insert("INSERT INTO users_bank_list(user_id, bank_code, account_no) VALUES (?, ?, ?)", [Auth()->id(), $request->input("bank_code"), $request->input("account_no")]);
+        DB::insert("INSERT INTO users_bank_list(user_id, bank_id, account_no) VALUES (?, ?, ?)", [Auth()->id(), $request->input("bank_id"), $request->input("account_no")]);
         return redirect()->back()->with('success', 'Profile updated successfully.');
     }
 
@@ -57,7 +58,7 @@ class SettingsController extends Controller
         $request->validate([
             'account_no' => 'required|max:255',
         ]);
-        
+
         DB::delete("DELETE FROM users_bank_list WHERE account_no = ? AND user_id = ?", [$request->input("account_no"), auth()->id()]);
         return redirect()->back()->with('success', 'Successfully deleted bank1.');
     }

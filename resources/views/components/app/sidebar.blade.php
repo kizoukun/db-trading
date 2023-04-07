@@ -1,3 +1,56 @@
+<div id="deposit-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+    <div class="relative w-full h-full max-w-md md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="deposit-modal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900">Deposit</h3>
+                <form class="space-y-6" action="{{url('/dashboard/balance/deposit')}}" method="POST">
+                    @csrf
+                    <div>
+                        <label for="amount" class="block mb-2 text-sm font-medium text-gray-900">Amount</label>
+                        <input type="number" name="amount" id="amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    </div>
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Deposit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="withdraw-modal" tabindex="-1" aria-hidden="true" class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
+    <div class="relative w-full h-full max-w-md md:h-auto">
+        <!-- Modal content -->
+        <div class="relative bg-white rounded-lg shadow">
+            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center" data-modal-hide="withdraw-modal">
+                <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+            <div class="px-6 py-6 lg:px-8">
+                <h3 class="mb-4 text-xl font-medium text-gray-900">Withdraw</h3>
+                <form class="space-y-6" action="{{url('/dashboard/balance/withdraw')}}" method="POST">
+                    @csrf
+                    <div>
+                        <label for="amount" class="block mb-2 text-sm font-medium text-gray-900">Amount</label>
+                        <input type="number" name="amount" id="amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+                    </div>
+                    <div>
+                        <label for="account_no" class="block mb-2 text-sm font-medium text-gray-900">Account Number</label>
+                        <select name="account_no" required value="{{$user_bank_list[0]->account_no}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                            @foreach($user_bank_list as $ubank)
+                                <option value="{{$ubank->account_no}}">{{ $ubank->name }} ({{ $ubank->account_no }})</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Withdraw</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <nav id="page-sidebar"
     class="flex flex-col fixed top-0 left-0 bottom-0 w-full lg:w-64 h-full bg-white border-r border-gray-200 z-50 transform transition-transform duration-500 ease-out translate-x-0"
     aria-label="Main Sidebar Navigation">
@@ -17,7 +70,7 @@
         <!-- END Brand -->
 
         <!-- Close Sidebar on Mobile -->
-        <div>
+        <div class="lg:hidden">
             <button type="button" onclick="toggleSidebar(false)"
                 class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-transparent text-red-600 hover:text-red-400 focus:ring focus:ring-red-500 focus:ring-opacity-50 active:text-red-600">
                 <svg class="hi-solid hi-x inline-block w-4 h-4 -mx-1" fill="currentColor" viewBox="0 0 20 20"
@@ -35,22 +88,22 @@
     <div class="overflow-y-auto">
         <div class="p-4 w-full">
             <div
-                class="flex flex-col justify-center items-center px-4 py-6 rounded-lg bg-gray-900 md:px-6 md:py-8 md:flex-row md:items-center md:justify-between">
+                class="flex flex-col flex justify-center items-center px-4 py-6 md:px-6 md:py-8 rounded-lg bg-gray-900">
                 <div class="text-white md:text-lg text-sm">
-                    <a href="#" class="text-white md:text-lg text-sm hover:underline">
+                    <a href="{{ url('/dashboard/balance#balance') }}" class="text-white md:text-lg text-sm hover:underline">
                         <p class="text-center font-medium">Balance</p>
-                        <p class="text-2xl font-bold text-center md:text-4xl">Rp 130,000</p>
+                        <p class="text-xl font-bold text-center">Rp {{ number_format(Auth()->user()->balance ?? 0) }}</p>
                     </a>
-                    <div class="flex flex-col mt-4 md:flex-row md:gap-4">
-                        <button id="btn-deposit"
+                </div>
+                <div class="flex flex-col mt-4 md:flex-row md:gap-4">
+                    <button data-modal-target="deposit-modal" data-modal-toggle="deposit-modal" id="btn-deposit"
                             class="w-full md:w-auto px-3 py-1 text-xs font-medium text-white rounded-md bg-green-500 hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
-                            Deposit
-                        </button>
-                        <button id="btn-withdraw"
+                        Deposit
+                    </button>
+                    <button data-modal-target="withdraw-modal" data-modal-toggle="withdraw-modal" id="btn-withdraw"
                             class="w-full md:w-auto mt-2 md:mt-0 px-3 py-1 text-xs font-medium text-white rounded-md bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">
-                            Withdraw
-                        </button>
-                    </div>
+                        Withdraw
+                    </button>
                 </div>
             </div>
             <nav class="space-y-1">

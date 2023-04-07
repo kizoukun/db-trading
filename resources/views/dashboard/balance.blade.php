@@ -56,7 +56,7 @@
                                     </span>
                                 @endif
                             </td>
-                            
+
                         </tr>
                         @endforeach
                       <!-- More transactions... -->
@@ -79,15 +79,15 @@
                         <tr>
                             <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">{{ $user_withdraw->created_at }}</td>
                             <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ number_format($user_withdraw->amount) }}</td>
-                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{{ $user_bal->description }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{{ $user_withdraw->description }}</td>
                             <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
                                 @if($user_withdraw->status == "ACCEPTED")
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                    {{ $deposit->status }}
+                                    {{ $user_withdraw->status }}
                                     </span>
                                 @elseif($user_withdraw->status == "REJECTED")
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
-                                    {{ $deposit->status }}
+                                    {{ $user_withdraw->status }}
                                     </span>
                                 @else
                                     <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
@@ -95,7 +95,7 @@
                                     </span>
                                 @endif
                             </td>
-                            
+
                         </tr>
                         @endforeach
                       <!-- More transactions... -->
@@ -156,7 +156,7 @@
             }
         });
         setTimeout(() => {
-      
+
             if(window.location.hash.indexOf('#') > -1) {
                 let tabName = window.location.hash.replace('#', '')
                 tabs.forEach(tab => tab.classList.remove('text-indigo-500', 'bg-indigo-100'));

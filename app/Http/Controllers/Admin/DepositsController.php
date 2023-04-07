@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -30,6 +31,10 @@ class DepositsController extends Controller
             "amount" => "required|numeric"
         ]);
         DB::update("UPDATE deposit_histories SET status = ?, description = ?, amount = ? WHERE id = ?", [$request->input("status"), $request->input("description"), $request->input("amount"), $id]);
+        if($request->input("status") == "ACCEPTED") {
+            $data = DB::select("SELECT user_id, description FROM deposit_histories WHERE id = ?", [$id]);
+            \App\Http\Controllers\Dashboard\StocksController::addUserBalance($data[0]->user_id, $request->input("amount"), $data[0]->description);
+        }
         return redirect()->intended("/admin/deposits");
     }
 }
