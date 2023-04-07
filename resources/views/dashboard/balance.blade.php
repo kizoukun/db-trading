@@ -1,23 +1,21 @@
 @extends('components.layouts.app')
 
 @section('content')
-    <h1>User Balance Histories</h1>
-
     <!-- Card -->
     <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
         <!-- Card Header -->
         <div class="py-4 px-5 lg:px-6 w-full border-b border-gray-200">
             <nav class="flex items-center space-x-1 md:space-x-2">
-                <a href="javascript:void(0)"
-                    class="px-3 md:px-5 font-medium flex items-center space-x-2 py-2 rounded text-indigo-500 bg-indigo-100">
+                <a href="#deposit" id="tab-nav-deposit"
+                    class="px-3 md:px-5 font-medium flex items-center space-x-2 py-2 rounded text-gray-500">
                     Deposit
                 </a>
-                <a href="javascript:void(0)"
-                    class="px-3 md:px-5 font-medium flex items-center space-x-2 py-2 rounded text-gray-500 hover:text-indigo-500 hover:bg-indigo-100 active:bg-transparent">
+                <a href="#withdraw" id="tab-nav-withdraw"
+                    class="px-3 md:px-5 font-medium flex items-center space-x-2 py-2 rounded text-gray-500">
                     Withdraw
                 </a>
-                <a href="javascript:void(0)"
-                    class="px-3 md:px-5 font-medium flex items-center space-x-2 py-2 rounded text-gray-500 hover:text-indigo-500 hover:bg-indigo-100 active:bg-transparent">
+                <a href="#balance" id="tab-nav-balance"
+                    class="px-3 md:px-5 font-medium flex items-center space-x-2 py-2 rounded text-gray-500 ">
                     Balance History
                 </a>
             </nav>
@@ -27,49 +25,114 @@
         <!-- Card Body -->
         <div class="p-5 lg:p-6 grow w-full">
             <!-- Deposit Tab Content -->
-            <div id="deposit-tab" class="tab-content">
-                <table class="min-w-full divide-y divide-gray-300">
+            <div id="tab-content-deposit" class="tab-content">
+            <table class="divide-y divide-gray-300 table-auto w-full">
                     <thead class="bg-gray-50">
                       <tr>
-                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Deposit ID</th>
-                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Gatau apa</th>
-                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Gatau apa</th>
-                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Gatau Juga</th>
-                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Emm</th>
-                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Yauda Gitu</th>
-                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Gitu dah bang</th>
-                        <th scope="col" class="relative whitespace-nowrap py-3.5 pl-3 pr-4 sm:pr-6">
-                          <span class="sr-only">Edit</span>
-                        </th>
+                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Date</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Amount</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
                       </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200 bg-white">
-                      <tr>
-                        <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">AAPS0L</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">Chase &amp; Co.</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">CAC</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">+$4.37</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">$3,509.00</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">12.00</td>
-                        <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">$4,397.00</td>
-                        <td class="relative whitespace-nowrap py-2 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                          <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit<span class="sr-only">, AAPS0L</span></a>
-                        </td>
-                      </tr>
-        
+                        @foreach($user_deposits as $user_deposit)
+                        <tr>
+                            <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">{{ $user_deposit->created_at }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ number_format($user_deposit->amount) }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{{ $user_deposit->description }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
+                                @if($user_deposit->status == "ACCEPTED")
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    {{ $user_deposit->status }}
+                                    </span>
+                                @elseif($user_deposit->status == "REJECTED")
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                    {{ $user_deposit->status }}
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    {{ $user_deposit->status }}
+                                    </span>
+                                @endif
+                            </td>
+                            
+                        </tr>
+                        @endforeach
                       <!-- More transactions... -->
                     </tbody>
-                  </table>
+                </table>
             </div>
             <!-- Withdraw Tab Content -->
-            <div id="withdraw-tab" class="tab-content hidden">
-                <h2>Withdraw Tab</h2>
-                <p>This is the content for the Withdraw tab.</p>
+            <div id="tab-content-withdraw" class="tab-content" hidden>
+                <table class="divide-y divide-gray-300 table-auto w-full">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Date</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Amount</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Status</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 bg-white">
+                        @foreach($user_withdraws as $user_withdraw)
+                        <tr>
+                            <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">{{ $user_withdraw->created_at }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ number_format($user_withdraw->amount) }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{{ $user_bal->description }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
+                                @if($user_withdraw->status == "ACCEPTED")
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                    {{ $deposit->status }}
+                                    </span>
+                                @elseif($user_withdraw->status == "REJECTED")
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                    {{ $deposit->status }}
+                                    </span>
+                                @else
+                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                    {{ $user_withdraw->status }}
+                                    </span>
+                                @endif
+                            </td>
+                            
+                        </tr>
+                        @endforeach
+                      <!-- More transactions... -->
+                    </tbody>
+                </table>
             </div>
             <!-- Balance History Tab Content -->
-            <div id="balance-history-tab" class="tab-content hidden">
-                <h2>Balance History Tab</h2>
-                <p>This is the content for the Balance History tab.</p>
+            <div id="tab-content-balance" class="tab-content" hidden>
+                <table class="divide-y divide-gray-300 table-auto w-full">
+                    <thead class="bg-gray-50">
+                      <tr>
+                        <th scope="col" class="whitespace-nowrap py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Date</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Balance Before</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Balance After</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Amount</th>
+                        <th scope="col" class="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900">Description</th>
+                      </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 bg-white">
+                        @foreach($user_balances as $user_bal)
+                        <tr>
+                            <td class="whitespace-nowrap py-2 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">{{ $user_bal->created_at }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm font-medium text-gray-900">{{ number_format($user_bal->balance_before) }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{{ number_format($user_bal->balance_after) }}</td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">
+                                @if($user_bal->type == 1)
+                                <span class="font-semibold text-green-500">+{{ number_format($user_bal->amount) }}</span>
+                                @else
+                                <span class="font-semibold text-red-500">-{{ number_format($user_bal->amount) }}</span>
+                                @endif
+                            </td>
+                            <td class="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{{ $user_bal->description }}</td>
+                        </tr>
+                        @endforeach
+                      <!-- More transactions... -->
+                    </tbody>
+                </table>
             </div>
         </div>
         <!-- END Card Body -->
@@ -77,32 +140,32 @@
     <!-- END Card -->
 
     <script>
-        // Add click event listener to each tab link
-        document.querySelector('#deposit-tab-link').addEventListener('click', function(event) {
-            // Hide all tab content
-            document.querySelectorAll('.tab-content').forEach(function(tabContent) {
-                tabContent.classList.add('hidden');
+        const tabs = document.querySelectorAll('[id^="tab-nav"]');
+        const desktopTabContents = document.querySelectorAll('[id^="tab-content-"]');
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', e => {
+                const currentTab = e.target.id;
+                tabs.forEach(tab => tab.classList.remove('text-indigo-500', 'bg-indigo-100'));
+                tab.classList.add('text-indigo-500', 'bg-indigo-100');
+                desktopTabContents.forEach(content => content.hidden = true);
+                document.getElementById(`tab-content-${currentTab.split('-')[2]}`).hidden = false;
             });
-            // Show Deposit tab content
-            document.querySelector('#deposit-tab').classList.remove('hidden');
+            // Set the content hidden by default except for the first tab
+            if (index > 0) {
+                desktopTabContents[index].hidden = true;
+            }
         });
+        setTimeout(() => {
+      
+            if(window.location.hash.indexOf('#') > -1) {
+                let tabName = window.location.hash.replace('#', '')
+                tabs.forEach(tab => tab.classList.remove('text-indigo-500', 'bg-indigo-100'));
+                desktopTabContents.forEach(content => content.hidden = true);
 
-        document.querySelector('#withdraw-tab-link').addEventListener('click', function(event) {
-            // Hide all tab content
-            document.querySelectorAll('.tab-content').forEach(function(tabContent) {
-                tabContent.classList.add('hidden');
-            });
-            // Show Withdraw tab content
-            document.querySelector('#withdraw-tab').classList.remove('hidden');
-        });
-
-        document.querySelector('#balance-history-tab-link').addEventListener('click', function(event) {
-            // Hide all tab content
-            document.querySelectorAll('.tab-content').forEach(function(tabContent) {
-                tabContent.classList.add('hidden');
-            });
-            // Show Balance History tab content
-            document.querySelector('#balance-history-tab').classList.remove('hidden');
-        });
+                document.getElementById(`tab-nav-${tabName}`).classList.add('text-indigo-500', 'bg-indigo-100');
+                document.getElementById(`tab-content-${tabName}`).hidden = false;
+            }
+        }, 200)
+        //Mobile
     </script>
 @endsection

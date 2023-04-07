@@ -30,7 +30,7 @@
         />
 
         <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-    <script src="/public/assets/js/script.js"></script>
+
 </head>
 
 <body>
@@ -94,6 +94,38 @@
         <!-- END Page Footer -->
     </div>
     <!-- END Page Container -->
-</body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.4/flowbite.min.js"></script>
 
+</body>
+<script>
+    
+    let open = true;
+    document.addEventListener('DOMContentLoaded', function() {
+        // code to be executed when the document is ready
+        if(window.innerWidth < 1024) {
+            toggleSidebar(false);
+        }
+    });
+    function toggleSidebar(boolean) {
+        const sidebar = document.getElementById("page-sidebar");
+        const pageContainer = document.getElementById("page-container");
+        const pageHeader = document.getElementById("page-header");
+        if(boolean !== undefined) {
+            open = !boolean;
+        }
+        if(!open) {
+            sidebar.classList.remove("-translate-x-full");
+            sidebar.classList.add("translate-x-0");
+            pageContainer.classList.add("lg:pl-64");
+            pageHeader.classList.add("lg:pl-64");
+            open = true;
+        } else {
+            sidebar.classList.add("-translate-x-full");
+            pageContainer.classList.remove("lg:pl-64");
+            pageHeader.classList.remove("lg:pl-64");
+            sidebar.classList.remove("translate-x-0");
+            open = false;
+        }
+    }
+</script>
 </html>
