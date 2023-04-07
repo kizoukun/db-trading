@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
-      <meta charset="UTF-8">
-      <meta name="viewport"
+        <meta charset="UTF-8">
+        <meta name="viewport"
             content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-      <meta http-equiv="X-UA-Compatible" content="ie=edge">
-      @vite('resources/css/app.css')
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        @vite('resources/css/app.css')
 
-      <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>DB Trading</title>
 
-      <!-- Favicons -->
-      <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
-      <link rel="icon" href="favicon.png" type="image/png">
+        <!-- Favicons -->
+        <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
+        <link rel="icon" href="favicon.png" type="image/png">
 
-      <!-- Main Stylesheet -->
-      <!-- Based on your project, you might need to include the compiled CSS file if it is not automatically injected in your pages -->
-      <!-- <link rel="stylesheet" href="css/{main-stylesheet-name}.css"> -->
+        <!-- Main Stylesheet -->
+        <!-- Based on your project, you might need to include the compiled CSS file if it is not automatically injected in your pages -->
+        <!-- <link rel="stylesheet" href="css/{main-stylesheet-name}.css"> -->
 
-      <!-- Inter web font from Google -->
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <!-- Inter web font from Google -->
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
-      <!-- Alpine.js, uncomment if you would like to use Tailkit’s Alpine JS based components -->
-      <script src="https://unpkg.com/alpinejs" defer></script>
-      <script scr="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <!-- Alpine.js, uncomment if you would like to use Tailkit’s Alpine JS based components -->
+        <script src="https://unpkg.com/alpinejs" defer></script>
+        <script scr="https://unpkg.com/axios/dist/axios.min.js"></script>
+        <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+        />
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
 </head>
 
 <body>
