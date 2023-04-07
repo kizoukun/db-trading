@@ -26,9 +26,6 @@ Route::get('/', function () {
     return redirect()->intended("/dashboard");
 });
 
-Route::get('/settings', function () {
-    return view('settings');
-});
 
 Route::get('/deposit', function () {
     return view('dashboard/deposit');
@@ -51,10 +48,16 @@ Route::delete("/auth/logout", function(Request $request) {
 
 Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenticated::class], function () {
     Route::get("/", [Dashboard\DashboardController::class, "index"]);
+    Route::get("/marketplace", [Dashboard\MarketplaceController::class, "index"]);
+    Route::get("/marketplace/{symbol}", [Dashboard\MarketplaceController::class, "index"]);
+    Route::get("/notifications", [Dashboard\NotificationsController::class, "show"]);
     Route::get("/balance", [Dashboard\BalanceController::class, "index"]);
     Route::post("/deposit", [Dashboard\DepositController::class, "store"]);
     Route::get("/bank", [Dashboard\BankController::class, "index"]);
     Route::post("/bank", [Dashboard\BankController::class, "store"]);
+    Route::get('/settings', [SettingsController::class, 'index']);
+    Route::post('/settings/password', [SettingsController::class, 'save_password']);
+    Route::post('/settings/profile', [SettingsController::class, 'save_profile']);
     Route::get("/stocks/{id}", [Dashboard\StocksController::class, "id"]);
     Route::post("/stocks/{id}", [Dashboard\StocksController::class, "createOrder"]);
     Route::delete("/stocks/{id}", [Dashboard\StocksController::class, "cancelBuyOpenOrders"]);
@@ -101,5 +104,16 @@ Route::Group(["prefix" => "admin", "middleware" => [Middleware\EnsureAuthenticat
         Route::put("/{id}", [Admin\NotificationsController::class, "update"]);
         Route::delete("/{id}", [Admin\NotificationsController::class, "delete"]);
     });
-
+    Route::group(["prefix" => "deposits"], function() {
+        Route::get("/", [Admin\DepositsController::class, "show"]);
+        Route::get("/{id}", [Admin\DepositsController::class, "edit"]);
+        Route::put("/{id}", [Admin\DepositsController::class, "update"]);
+        Route::delete("/{id}", [Admin\DepositsController::class, "delete"]);
+    });
+    Route::group(["prefix" => "withdraws"], function() {
+        Route::get("/", [Admin\WithdrawsController::class, "show"]);
+        Route::get("/{id}", [Admin\WithdrawsController::class, "edit"]);
+        Route::put("/{id}", [Admin\WithdrawsController::class, "update"]);
+        Route::delete("/{id}", [Admin\WithdrawsController::class, "delete"]);
+    });
 });

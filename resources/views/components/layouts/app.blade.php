@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     @vite('resources/css/app.css')
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>DB Trading</title>
 
     <!-- Favicons -->
     <link rel="icon" href="favicon.svg" sizes="any" type="image/svg+xml">
@@ -25,6 +24,12 @@
     <!-- Alpine.js, uncomment if you would like to use Tailkit’s Alpine JS based components -->
     <script src="https://unpkg.com/alpinejs" defer></script>
     <script scr="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+        />
+
+        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
     <script src="/public/assets/js/script.js"></script>
 </head>
 

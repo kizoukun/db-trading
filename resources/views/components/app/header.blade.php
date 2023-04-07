@@ -76,37 +76,11 @@
                             clip-rule="evenodd" />
                     </svg>
                 </button>
-                <!-- END Dropdown Toggle Button -->
-
-                <!-- Dropdown -->
-                <!--
-            Visibility
-              Closed        'hidden'
-              Opened        '' (no class)
-
-            Show/Hide with transitions
-              enter         'transition ease-out duration-150'
-              enter-start   'transform opacity-0 scale-75'
-              enter-end     'transform opacity-100 scale-100'
-              leave         'transition ease-in duration-100'
-              leave-start   'transform opacity-100 scale-100'
-              leave-end     'transform opacity-0 scale-75'
-          -->
                 <div role="menu" aria-labelledby="tk-dropdown-layouts-user"
                     class="absolute right-0 origin-top-right mt-2 w-48 shadow-xl rounded z-1">
                     <div id="menus" class="bg-white ring-1 ring-black ring-opacity-5 rounded divide-y divide-gray-100 hidden" :class="profileOpen ? 'block' : 'hidden'">
                         <div class="p-2 space-y-1">
-                            <a role="menuitem" href="javascript:void(0)"
-                                class="flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
-                                <svg class="hi-solid hi-user-circle inline-block w-5 h-5 opacity-50" fill="currentColor"
-                                    viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <span>Profile</span>
-                            </a>
-                            <a role="menuitem" href="javascript:void(0)"
+                            <a role="menuitem" href="{{url("/dashboard/notifications")}}"
                                 class="flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
                                 <svg class="hi-solid hi-inbox inline-block w-5 h-5 opacity-50" fill="currentColor"
                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -114,11 +88,11 @@
                                         d="M5 3a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2V5a2 2 0 00-2-2H5zm0 2h10v7h-2l-1 2H8l-1-2H5V5z"
                                         clip-rule="evenodd" />
                                 </svg>
-                                <span>Inbox</span>
+                                <span>Notifications</span>
                             </a>
                         </div>
                         <div class="p-2 space-y-1">
-                            <a role="menuitem" href="javascript:void(0)"
+                            <a role="menuitem" href="{{url("/dashboard/settings")}}"
                                 class="flex items-center space-x-2 rounded py-2 px-3 text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-700 focus:outline-none focus:bg-gray-100 focus:text-gray-700">
                                 <svg class="hi-solid hi-cog inline-block w-5 h-5 opacity-50" fill="currentColor"
                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">

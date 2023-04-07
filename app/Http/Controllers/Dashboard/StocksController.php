@@ -11,14 +11,16 @@ class StocksController extends Controller
 {
     //
     public function id($id) {
-        $result = DB::select("SELECT * FROM stocks WHERE symbol = ? LIMIT 1", [$id]);
+        $result = DB::select("SELECT *,(select order_price FROM orders WHERE stock_symbol = stocks.symbol  ORDER BY orders.created_at DESC LIMIT 1) as price FROM stocks WHERE symbol = ? LIMIT 1", [$id]);
         if(count($result) < 1) {
             abort(404);
         }
         $buy_open_orders = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND order_type = ? AND user_id != ? ORDER BY order_price DESC", [$id, "BUY", auth()->id()]);
         $sell_open_orders = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND order_type = ? AND user_id != ? ORDER BY order_price ASC", [$id, "SELL", auth()->id()]);
+        $open_orders = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND user_id != ? ORDER BY order_price ASC", [$id, auth()->id()]);
+
         $user_open_orders = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND user_id = ? ORDER BY order_price DESC", [$id, auth()->id()]);
-        return view("dashboard.stock", ["stock" => $result[0], "buy_orders" => $buy_open_orders, "sell_orders" => $sell_open_orders, "user_open_orders" => $user_open_orders]);
+        return view("marketplace", ["open_orders" => $open_orders, "stock" => $result[0], "buy_orders" => $buy_open_orders, "sell_orders" => $sell_open_orders, "user_open_orders" => $user_open_orders, 'id' => $id, 'stocks' => $result]);
     }
 
     public function createOrder($id) {
@@ -148,7 +150,7 @@ class StocksController extends Controller
         if($order->order_type == "BUY") {
             $this->addUserBalance($order->user_id, $order->order_price * $order->order_quantity, "CANCEL BUY OPEN ORDER : " . $order->stock_symbol . " Amount: " . $order->order_quantity . " at price: " . $order->order_price);
         }
-        DB::delete("DELETE FROM open_orders WHERE id = ?;", [$id]);
+        DB::delete("DELETE FROM open_orders WHERE id = ? AND user_id = ?;", [$id, auth()->id()]);
         return redirect()->back();
     }
 
