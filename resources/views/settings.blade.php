@@ -30,148 +30,76 @@
                             <div class="border-b border-gray-200">
                                 <nav class="-mb-px flex space-x-8">
                                     <!-- Current: "border-purple-500 text-purple-600", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                                    <a href="#" id="tab-general"
+                                    <a href="#general" id="tab-nav-general"
                                         class="whitespace-nowrap border-b-2 border-purple-500 px-1 py-4 text-sm font-medium text-purple-600">General</a>
 
-                                    <a href="#" id="tab-password"
+                                    <a href="#password" id="tab-nav-password"
                                         class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Password</a>
 
-                                    <a href="#" id="tab-notifications"
-                                        class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Notifications</a>
 
-                                    <a href="#" id="tab-billing"
-                                        class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-gray-500 hover:border-gray-300 hover:text-gray-700">Billing</a>
+                                   
                                 </nav>
                             </div>
                         </div>
                         <div id="tab-content-general" class="py-6">
-                            <!-- Description list with inline editing -->
-                            <div class="mt-10 divide-y divide-gray-200">
-                                <div class="space-y-1">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-                                    <p class="max-w-2xl text-sm text-gray-500">This information will be displayed publicly
-                                        so be careful what you share.</p>
-                                </div>
-                                <div class="mt-6">
-                                    <dl class="divide-y divide-gray-200">
-                                        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-                                            <dt class="text-sm font-medium text-gray-500">Name</dt>
-                                            <dd class="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                <span class="flex-grow">Chelsea Hagon</span>
-                                                <span class="ml-4 flex-shrink-0">
-                                                    <button type="button"
-                                                        class="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
-                                                </span>
-                                            </dd>
-                                        </div>
-                                        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
-                                            <dt class="text-sm font-medium text-gray-500">Photo</dt>
-                                            <dd class="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                <span class="flex-grow">
-                                                    <img class="h-8 w-8 rounded-full"
-                                                        src="https://images.unsplash.com/photo-1550525811-e5869dd03032?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                                        alt="" />
-                                                </span>
-                                                <span class="ml-4 flex flex-shrink-0 items-start space-x-4">
-                                                    <button type="button"
-                                                        class="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
-                                                    <span class="text-gray-300" aria-hidden="true">|</span>
-                                                    <button type="button"
-                                                        class="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Remove</button>
-                                                </span>
-                                            </dd>
-                                        </div>
-                                        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
-                                            <dt class="text-sm font-medium text-gray-500">Email</dt>
-                                            <dd class="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                <span class="flex-grow">chelsea.hagon@example.com</span>
-                                                <span class="ml-4 flex-shrink-0">
-                                                    <button type="button"
-                                                        class="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
-                                                </span>
-                                            </dd>
-                                        </div>
-                                        <div
-                                            class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200 sm:py-5">
-                                            <dt class="text-sm font-medium text-gray-500">Job title</dt>
-                                            <dd class="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                <span class="flex-grow">Human Resources Manager</span>
-                                                <span class="ml-4 flex-shrink-0">
-                                                    <button type="button"
-                                                        class="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
-                                                </span>
-                                            </dd>
-                                        </div>
-                                    </dl>
-                                </div>
+                        <div class="flex flex-col rounded shadow-sm bg-white overflow-hidden">
+                            <!-- Card Header: Change Password -->
+                            <div class="py-4 px-5 lg:px-6 w-full bg-gray-50">
+                                <h3 class="flex items-center space-x-2">
+                                    <svg class="hi-solid hi-lock-open inline-block w-5 h-5 text-indigo-500"
+                                        fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M10 2a5 5 0 00-5 5v2a2 2 0 00-2 2v5a2 2 0 002 2h10a2 2 0 002-2v-5a2 2 0 00-2-2H7V7a3 3 0 015.905-.75 1 1 0 001.937-.5A5.002 5.002 0 0010 2z" />
+                                    </svg>
+                                    <span>Change Profile</span>
+                                </h3>
                             </div>
+                            <!-- END Card Header: Change Password -->
 
-                            <div class="mt-10 divide-y divide-gray-200">
-                                <div class="space-y-1">
-                                    <h3 class="text-lg font-medium leading-6 text-gray-900">Account</h3>
-                                    <p class="max-w-2xl text-sm text-gray-500">Manage how information is displayed on your
-                                        account.</p>
-                                </div>
-                                <div class="mt-6">
-                                    <dl class="divide-y divide-gray-200">
-                                        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5">
-                                            <dt class="text-sm font-medium text-gray-500">Language</dt>
-                                            <dd class="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                <span class="flex-grow">English</span>
-                                                <span class="ml-4 flex-shrink-0">
-                                                    <button type="button"
-                                                        class="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
-                                                </span>
-                                            </dd>
-                                        </div>
-                                        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
-                                            <dt class="text-sm font-medium text-gray-500">Date format</dt>
-                                            <dd class="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                <span class="flex-grow">DD-MM-YYYY</span>
-                                                <span class="ml-4 flex flex-shrink-0 items-start space-x-4">
-                                                    <button type="button"
-                                                        class="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Update</button>
-                                                    <span class="text-gray-300" aria-hidden="true">|</span>
-                                                    <button type="button"
-                                                        class="rounded-md bg-white font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">Remove</button>
-                                                </span>
-                                            </dd>
-                                        </div>
-                                        <div class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:py-5 sm:pt-5">
-                                            <dt class="text-sm font-medium text-gray-500" id="timezone-option-label">
-                                                Automatic timezone</dt>
-                                            <dd class="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                <!-- Enabled: "bg-purple-600", Not Enabled: "bg-gray-200" -->
-                                                <button type="button"
-                                                    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:ml-auto"
-                                                    role="switch" aria-checked="true"
-                                                    aria-labelledby="timezone-option-label">
-                                                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-                                                    <span aria-hidden="true"
-                                                        class="inline-block h-5 w-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                                                </button>
-                                            </dd>
-                                        </div>
-                                        <div
-                                            class="py-4 sm:grid sm:grid-cols-3 sm:gap-4 sm:border-b sm:border-gray-200 sm:py-5">
-                                            <dt class="text-sm font-medium text-gray-500" id="auto-update-option-label">
-                                                Auto-update applicant data</dt>
-                                            <dd class="mt-1 flex text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                                                <!-- Enabled: "bg-purple-600", Not Enabled: "bg-gray-200" -->
-                                                <button type="button"
-                                                    class="relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent bg-gray-200 transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 sm:ml-auto"
-                                                    role="switch" aria-checked="false"
-                                                    aria-labelledby="auto-update-option-label">
-                                                    <!-- Enabled: "translate-x-5", Not Enabled: "translate-x-0" -->
-                                                    <span aria-hidden="true"
-                                                        class="inline-block h-5 w-5 translate-x-0 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                                                </button>
-                                            </dd>
-                                        </div>
-                                    </dl>
-                                </div>
+                            <!-- Card Body: Change Password -->
+                            <div class="p-5 lg:p-6 grow w-full md:flex md:space-x-5">
+                                
+             
+                                <form method="post" action="settings/profile" class="space-y-6 md:w-full">
+                                    @csrf
+                                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+ 
+                                    <div class="space-y-1">
+                                        <label for="tk-form-layouts-multiple-cards-password" class="font-medium">
+                                            First Name</label>
+                                        <input
+                                            name="first_name"
+                                            value="{{ auth()->user()->first_name }}"
+                                            class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                                            type="text" id="tk-form-layouts-multiple-cards-password" />
+                                    </div>
+                                    <div class="space-y-1">
+                                        <label for="tk-form-layouts-multiple-cards-password" class="font-medium">
+                                            Last Name</label>
+                                        <input
+                                            name="last_name"
+                                            value="{{ auth()->user()->last_name }}"
+                                            class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
+                                            type="text" id="tk-form-layouts-multiple-cards-password" />
+                                    </div>
+  
+                                    <button type="submit"
+                                        class="inline-flex justify-center items-center space-x-2 border font-semibold focus:outline-none px-3 py-2 leading-5 text-sm rounded border-indigo-700 bg-indigo-700 text-white hover:text-white hover:bg-indigo-800 hover:border-indigo-800 focus:ring focus:ring-indigo-500 focus:ring-opacity-50 active:bg-indigo-700 active:border-indigo-700">
+                                        Update
+                                    </button>
+                                </form>
                             </div>
+                            <!-- END Card Body: Change Password -->
                         </div>
+                        <!-- END Card: Change Password -->
                     </div>
 
                     <div id="tab-content-password" class="py-6" hidden>
@@ -192,14 +120,27 @@
 
                             <!-- Card Body: Change Password -->
                             <div class="p-5 lg:p-6 grow w-full md:flex md:space-x-5">
+                                
                                 <p class="md:flex-none md:w-1/3 text-gray-500 text-sm mb-5">
                                     Changing your sign in password is an easy way to keep your account secure.
                                 </p>
-                                <form onsubmit="return false;" class="space-y-6 md:w-1/2">
+                                <form method="post" action="settings/password" class="space-y-6 md:w-1/2">
+                                    @csrf
+                                    @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+ 
                                     <div class="space-y-1">
                                         <label for="tk-form-layouts-multiple-cards-password" class="font-medium">Current
                                             Password</label>
                                         <input
+                                            name="current_password"
                                             class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
                                             type="password" id="tk-form-layouts-multiple-cards-password" />
                                     </div>
@@ -207,6 +148,7 @@
                                         <label for="tk-form-layouts-multiple-cards-password-new" class="font-medium">New
                                             Password</label>
                                         <input
+                                            name="new_password"
                                             class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
                                             type="password" id="tk-form-layouts-multiple-cards-password-new" />
                                     </div>
@@ -214,6 +156,7 @@
                                         <label for="tk-form-layouts-multiple-cards-password-new-confirm"
                                             class="font-medium">Confirm Password</label>
                                         <input
+                                           name="new_password_confirmation"
                                             class="block border border-gray-200 rounded px-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
                                             type="password" id="tk-form-layouts-multiple-cards-password-new-confirm" />
                                     </div>
@@ -494,22 +437,32 @@
     </main>
 
     <script>
-        const tabs = document.querySelectorAll('[id^="tab-"]');
+        const tabs = document.querySelectorAll('[id^="tab-nav"]');
         const desktopTabContents = document.querySelectorAll('[id^="tab-content-"]');
         tabs.forEach((tab, index) => {
             tab.addEventListener('click', e => {
-                e.preventDefault();
                 const currentTab = e.target.id;
                 tabs.forEach(tab => tab.classList.remove('border-purple-500', 'text-purple-600'));
                 tab.classList.add('border-purple-500', 'text-purple-600');
                 desktopTabContents.forEach(content => content.hidden = true);
-                document.getElementById(`tab-content-${currentTab.split('-')[1]}`).hidden = false;
+                document.getElementById(`tab-content-${currentTab.split('-')[2]}`).hidden = false;
             });
             // Set the content hidden by default except for the first tab
             if (index > 0) {
                 desktopTabContents[index].hidden = true;
             }
         });
+        setTimeout(() => {
+      
+            if(window.location.hash.indexOf('#') > -1) {
+                let tabName = window.location.hash.replace('#', '')
+                tabs.forEach(tab => tab.classList.remove('border-purple-500', 'text-purple-600'));
+                desktopTabContents.forEach(content => content.hidden = true);
+
+                document.getElementById(`tab-nav-${tabName}`).classList.add('border-purple-500', 'text-purple-600');
+                document.getElementById(`tab-content-${tabName}`).hidden = false;
+            }
+        }, 200)
         //Mobile
         const select = document.getElementById('selected-tab');
         const mobileTabContents = document.querySelectorAll(

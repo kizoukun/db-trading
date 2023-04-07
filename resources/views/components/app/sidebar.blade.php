@@ -29,46 +29,13 @@
           <span class="py-2 grow">Dashboard</span>
           <span class="px-2 py-1 rounded-full text-xs font-medium leading-4 bg-opacity-10 text-gray-600 bg-gray-500">3</span>
         </a>
-        <div class="px-3 pt-5 pb-2 text-xs font-medium uppercase tracking-wider text-gray-500">Market Overview</div>
-        <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
+        <!-- <div class="px-3 pt-5 pb-2 text-xs font-medium uppercase tracking-wider text-gray-500">Market Overview</div> -->
+        <a href="{{ url('/dashboard/stocks/GGRM') }}" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
           <span class="flex-none flex items-center opacity-50">
             <svg class="hi-outline hi-scale inline-block w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"/></svg>
           </span>
-          <span class="py-2 grow">Live Market</span>
-          <span class="px-2 py-1 rounded-full text-xs font-medium leading-4 bg-opacity-10 text-gray-600 bg-gray-500">New</span>
-        </a>
-        <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
-          <span class="flex-none flex items-center opacity-50">
-            <svg class="hi-outline hi-view-grid inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/></svg>
-          </span>
-          <span class="py-2 grow">Sectors</span>
-          <span class="px-2 py-1 rounded-full text-xs font-medium leading-4 bg-opacity-10 text-gray-600 bg-gray-500">New</span>
-        </a>
-        <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
-          <span class="flex-none flex items-center opacity-50">
-            <svg class="hi-outline hi-users inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-          </span>
-          <span class="py-2 grow">IHSG</span>
-          <span class="px-2 py-1 rounded-full text-xs font-medium leading-4 bg-opacity-10 text-gray-600 bg-gray-500">Coming Soon</span>
-        </a>
-        <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
-          <span class="flex-none flex items-center opacity-50">
-            <svg class="hi-outline hi-plus-circle inline-block w-5 h-5 text-emerald-600" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-          </span>
-          <span class="py-2 grow">Add New</span>
-        </a>
-        <div class="px-3 pt-5 pb-2 text-xs font-medium uppercase tracking-wider text-gray-500">Account</div>
-        <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
-          <span class="flex-none flex items-center opacity-50">
-            <svg class="hi-outline hi-user inline-block w-5 h-5" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-          </span>
-          <span class="py-2 grow">Profile</span>
-        </a>
-        <a href="javascript:void(0)" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
-          <span class="flex-none flex items-center opacity-50">
-            <svg class="hi-outline hi-paper-airplane inline-block w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
-          </span>
-          <span class="py-2 grow">Portofolio</span>
+          <span class="py-2 grow">Stock</span>
+          <!-- <span class="px-2 py-1 rounded-full text-xs font-medium leading-4 bg-opacity-10 text-gray-600 bg-gray-500">New</span> -->
         </a>
         <a href="{{ url("/dashboard/settings") }}" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
           <span class="flex-none flex items-center opacity-50">
@@ -76,7 +43,7 @@
           </span>
           <span class="py-2 grow">Settings</span>
         </a>
-          <form method="POST" action="/auth/logout">
+          <form method="POST" action="/auth/logout" class="w-100 block">
                 @csrf
                 @method("DELETE")
               <button type="submit" class="flex items-center space-x-3 px-3 font-medium rounded text-gray-600 hover:text-gray-700 hover:bg-gray-100 active:bg-gray-50">
