@@ -27,6 +27,10 @@ Route::get('/', function () {
 });
 
 
+Route::get('/deposit', function () {
+    return view('dashboard/deposit');
+});
+
 Route::get("/auth/login", [LoginController::class, "index"])->name("login")->middleware(NotAuthenticated::class);
 Route::post("/auth/login", [LoginController::class, "login"])->middleware(NotAuthenticated::class)->name('loginuser');
 
