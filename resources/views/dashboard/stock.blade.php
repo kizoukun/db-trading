@@ -8,7 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    Hello World
     <form action="/dashboard/stocks/{{$stock->symbol}}" method="post">
         @csrf
         <input type="hidden" name="stock_symbol" value="{{ $stock->symbol }}" />
@@ -82,35 +81,35 @@
         @endforeach
         </tbody>
     </table>
-    <h1>User Open Orders</h1>
-    <table border="1" width="100%">
-        <thead>
-        <tr>
-            <th>Price</th>
-            <th>Type</th>
-            <th>Quantity</th>
-            <th>Total Price</th>
-            <th>Cancel</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($user_open_orders as $user_open)
-            <tr>
-                <td>{{ $user_open->order_price }}</td>
-                <td>{{ $user_open->order_type }}</td>
-                <td>{{ $user_open->order_quantity }}</td>
-                <td>{{ number_format($user_open->order_price * $user_open->order_quantity) }}</td>
-                <td>
-                    <form method="POST">
-                        @csrf
-                        @method("DELETE")
-                        <input type="hidden" name="order_id" value="{{ $user_open->id }}" />
-                        <button type="submit" >Cancel</button>
-                    </form>
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
-    </table>
+            <h1>User Open Orders</h1>
+            <table border="1" width="100%">
+                <thead>
+                <tr>
+                    <th>Price</th>
+                    <th>Type</th>
+                    <th>Quantity</th>
+                    <th>Total Price</th>
+                    <th>Cancel</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($user_open_orders as $user_open)
+                    <tr>
+                        <td>{{ $user_open->order_price }}</td>
+                        <td>{{ $user_open->order_type }}</td>
+                        <td>{{ $user_open->order_quantity }}</td>
+                        <td>{{ number_format($user_open->order_price * $user_open->order_quantity) }}</td>
+                        <td>
+                            <form method="POST">
+                                @csrf
+                                @method("DELETE")
+                                <input type="hidden" name="order_id" value="{{ $user_open->id }}" />
+                                <button type="submit" >Cancel</button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
 </body>
 </html>

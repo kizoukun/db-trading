@@ -26,9 +26,6 @@ Route::get('/', function () {
     return redirect()->intended("/dashboard");
 });
 
-Route::get('/settings', function () {
-    return view('settings');
-});
 
 Route::get("/auth/login", [LoginController::class, "index"])->name("login")->middleware(NotAuthenticated::class);
 Route::post("/auth/login", [LoginController::class, "login"])->middleware(NotAuthenticated::class)->name('loginuser');
@@ -47,10 +44,16 @@ Route::delete("/auth/logout", function(Request $request) {
 
 Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenticated::class], function () {
     Route::get("/", [Dashboard\DashboardController::class, "index"]);
+    Route::get("/marketplace", [Dashboard\MarketplaceController::class, "index"]);
+    Route::get("/marketplace/{symbol}", [Dashboard\MarketplaceController::class, "index"]);
+    Route::get("/notifications", [Dashboard\NotificationsController::class, "show"]);
     Route::get("/balance", [Dashboard\BalanceController::class, "index"]);
     Route::post("/deposit", [Dashboard\DepositController::class, "store"]);
     Route::get("/bank", [Dashboard\BankController::class, "index"]);
     Route::post("/bank", [Dashboard\BankController::class, "store"]);
+    Route::get('/settings', [SettingsController::class, 'index']);
+    Route::post('/settings/password', [SettingsController::class, 'save_password']);
+    Route::post('/settings/profile', [SettingsController::class, 'save_profile']);
     Route::get("/stocks/{id}", [Dashboard\StocksController::class, "id"]);
     Route::post("/stocks/{id}", [Dashboard\StocksController::class, "createOrder"]);
     Route::delete("/stocks/{id}", [Dashboard\StocksController::class, "cancelBuyOpenOrders"]);

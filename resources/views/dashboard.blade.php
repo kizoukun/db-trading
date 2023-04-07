@@ -7,36 +7,24 @@
             <!-- Additional required wrapper -->
             <div class="swiper-wrapper">
                 <!-- Slides -->
+                @foreach($user_stock_amounts as $stock)
                 <div class="swiper-slide bg-white rounded-lg p-3">
                     <div class="flex justify-between">
                         <div>
-                            <p class="font-semibold text-lg">NVIDIA</p>
+                            <p class="font-semibold text-lg">{{ $stock->name }}</p>
                         </div>
                         <div>
-                            <p class="text-lg">NVDA</p>
+                            <p class="text-lg">{{ $stock->symbol }}</p>
                             <p class="text-green-500">+5.63</p>
                         </div>
                     </div>
                     <div>
                         <p class="text-md md:text-xl text-gray-400">Current Value</p>
-                        <p class="text-md md:text-xl text-green-500 font-semibold">$203.44</p>
+                        <p class="text-md md:text-xl text-green-500 font-semibold">Rp.{{ number_format($stock->amount * $stock->price) }} <span class="text-sm">({{ $stock->amount }})</span></p>
                     </div>
                 </div>
-                <div class="swiper-slide bg-white rounded-lg p-3">
-                    <div class="flex justify-between">
-                        <div>
-                            <p class="font-semibold text-lg">NVIDIA</p>
-                        </div>
-                        <div>
-                            <p class="text-lg">NVDA</p>
-                            <p class="text-green-500">+5.63</p>
-                        </div>
-                    </div>
-                    <div>
-                        <p class="text-md md:text-xl text-gray-400">Current Value</p>
-                        <p class="text-md md:text-xl text-green-500 font-semibold">$203.44</p>
-                    </div>
-                </div>
+                @endforeach
+
             </div>
             <!-- If we need navigation buttons -->
             <div class="swiper-button-prev"></div>
