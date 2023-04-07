@@ -23,7 +23,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('withdraw_histories', function (Blueprint $table) {
-            //
+            $table->dropColumn("user_bank_id");
         });
     }
 };
