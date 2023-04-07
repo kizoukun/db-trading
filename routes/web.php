@@ -9,6 +9,7 @@ use App\Http\Middleware;
 use App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Admin;
 use App\Http\Controllers\StockController;
+use App\Http\Controllers\SettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,10 @@ use App\Http\Controllers\StockController;
 
 Route::get('/', function () {
     return redirect()->intended("/dashboard");
+});
+
+Route::get('/settings', function () {
+    return view('settings');
 });
 
 Route::get("/auth/login", [LoginController::class, "index"])->name("login")->middleware(NotAuthenticated::class);
