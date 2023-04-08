@@ -39,7 +39,7 @@
                     </div>
                     <div>
                         <label for="account_no" class="block mb-2 text-sm font-medium text-gray-900">Account Number</label>
-                        <select name="account_no" required value="{{$user_bank_list[0]->account_no}}" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                        <select name="account_no" required class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                             @foreach($user_bank_list as $ubank)
                                 <option value="{{$ubank->account_no}}">{{ $ubank->name }} ({{ $ubank->account_no }})</option>
                             @endforeach

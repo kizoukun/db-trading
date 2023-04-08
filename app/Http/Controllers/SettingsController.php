@@ -58,7 +58,8 @@ class SettingsController extends Controller
         $request->validate([
             'account_no' => 'required|max:255',
         ]);
-
+//        $data = DB::select("SELECT * FROM users_bank_list WHERE account_no = ? AND user_id = ?", [$request->input("account_no"), auth()->id()]);
+//        DB::update("UPDATE withdraw_histories SET user_bank_id = NULL WHERE user_bank_id = ?", [$data[0]->bank_id]);
         DB::delete("DELETE FROM users_bank_list WHERE account_no = ? AND user_id = ?", [$request->input("account_no"), auth()->id()]);
         return redirect()->back()->with('success', 'Successfully deleted bank1.');
     }
