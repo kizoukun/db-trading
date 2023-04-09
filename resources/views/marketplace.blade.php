@@ -178,7 +178,7 @@
                 <tbody class="text-sm">
                 @foreach($sell_orders as $sell_open)
                     <tr class="border-b-2">
-                        <td>Rp.{{ number_format($open_order->order_price) }}</td>
+                        <td>Rp.{{ number_format($sell_open->order_price) }}</td>
                         <td>{{ $sell_open->order_type }}</td>
                         <td>{{ $sell_open->order_quantity }}</td>
                     </tr>
