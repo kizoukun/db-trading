@@ -11,35 +11,24 @@
                     <h3 class="font-semibold">
                         All Orders
                     </h3>
-                    <h4 class="text-gray-500 text-sm">
-                        You have <a href="javascript:void(0)" class="text-indigo-600 hover:text-indigo-400">10 new orders</a>
-                    </h4>
                 </div>
                 <div class="mt-3 sm:mt-0 text-center sm:text-right sm:w-48">
-                    <select
-                        class="block border border-gray-200 rounded px-3 py-2 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
-                        <option>Today</option>
-                        <option>Last 7 days</option>
-                        <option>Last 15 days</option>
-                        <option selected="selected">Last 30 days</option>
-                        <option>Last Year</option>
+                    <select onchange="this.form.submit()" name="date" class="block border border-gray-200 rounded px-3 py-2 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50">
+                        <option value="1">Today</option>
+                        <option value="7">Last 7 days</option>
+                        <option value="15">Last 15 days</option>
+                        <option value="30">Last 30 days</option>
+                        <option value="365">Last Year</option>
+                        <option value="3650" selected>All Time</option>
                     </select>
                 </div>
             </div>
             <div class="p-5 lg:p-6 grow w-full border-b border-gray-100">
                 <div class="relative">
-                    <div
-                        class="absolute inset-y-0 left-0 w-10 my-px ml-px flex items-center justify-center pointer-events-none rounded-l text-gray-500">
-                        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
-                            class="hi-solid hi-search inline-block w-5 h-5">
-                            <path fill-rule="evenodd"
-                                d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                                clip-rule="evenodd"></path>
-                        </svg>
+                    <div class="absolute inset-y-0 left-0 w-10 my-px ml-px flex items-center justify-center pointer-events-none rounded-l text-gray-500">
+                        <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="hi-solid hi-search inline-block w-5 h-5"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
                     </div>
-                    <input
-                        class="block border border-gray-200 rounded pl-10 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50"
-                        type="text" placeholder="Search stocks" />
+                    <input name="search" class="block border border-gray-200 rounded pl-10 pr-3 py-2 leading-6 w-full focus:border-indigo-500 focus:ring focus:ring-indigo-500 focus:ring-opacity-50" type="text" placeholder="Search all open orders.." />
                 </div>
             </div>
             <!-- END Card Header -->

@@ -18,6 +18,7 @@ class Controller extends BaseController
             } else if(session("toast_success") != null) {
                 toast(session("toast_success"), "success");
             }
+            session()->regenerate();
             return $next($request);
         });
     }

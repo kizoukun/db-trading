@@ -44,8 +44,6 @@ Route::delete("/auth/logout", function(Request $request) {
 
 Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenticated::class], function () {
     Route::get("/", [Dashboard\DashboardController::class, "index"]);
-    Route::get("/marketplace", [Dashboard\MarketplaceController::class, "index"]);
-    Route::get("/marketplace/{symbol}", [Dashboard\MarketplaceController::class, "index"]);
     Route::get("/notifications", [Dashboard\NotificationsController::class, "show"]);
     Route::get("/balance", [Dashboard\BalanceController::class, "show"]);
     Route::post("/balance/deposit", [Dashboard\BalanceController::class, "storeDeposit"]);

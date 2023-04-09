@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class StocksController extends Controller
 {
-    public function show() {
-        $stocks = DB::select("SELECT * FROM STOCKS");
+    public function show(Request $request) {
+        $search = $request->query("search") ?? "";
+        $max_date = $request->query("date") ?? "3650";
+        $date = date("Y-m-d", strtotime("-$max_date days"));
+        $stocks = DB::select("SELECT * FROM stocks WHERE symbol LIKE ? OR name LIKE ? AND created_at <= ?", ["%$search%", "%$search%", "$date"]);
         return view("admin.stocks.index", ["stocks" => $stocks]);
     }
 
