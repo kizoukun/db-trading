@@ -57,6 +57,7 @@ Route::group(["prefix" => 'dashboard', "middleware" => Middleware\EnsureAuthenti
     Route::delete('/settings/banks', [SettingsController::class, 'delete_bank']);
     Route::get("/stocks/{id}", [Dashboard\StocksController::class, "id"]);
     Route::post("/stocks/{id}", [Dashboard\StocksController::class, "createOrder"]);
+    Route::post("/stocks/{id}/watchlist", [Dashboard\StocksController::class, "saveWatchList"]);
     Route::delete("/stocks/{id}", [Dashboard\StocksController::class, "cancelBuyOpenOrders"]);
 });
 

@@ -154,6 +154,17 @@ class StocksController extends Controller
         return redirect()->back();
     }
 
+    public function saveWatchList(String $symbol) {
+        $result = DB::select("SELECT * FROM watch_lists WHERE user_id = ? AND stock_symbol = ?", [auth()->id(), $symbol]);
+        if(count($result) > 0) {
+            DB::delete("DELETE FROM watch_lists WHERE user_id = ? AND stock_symbol = ?", [auth()->id(), $symbol]);
+            return redirect()->back()->with("toast_success", "Successfully remove from watch list");
+        } else {
+            DB::insert("INSERT INTO watch_lists (user_id, stock_symbol) VALUES (?, ?)", [auth()->id(), $symbol]);
+            return redirect()->back()->with("toast_success", "Successfully add to watch list");
+        }
+    }
+
 
     public static function addUserBalance($userId, $amount, $description) {
         DB::insert("INSERT INTO balance_histories (user_id, balance_before, balance_after, amount, description, type)
