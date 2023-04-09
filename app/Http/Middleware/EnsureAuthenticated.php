@@ -20,6 +20,9 @@ class EnsureAuthenticated
             return redirect()->intended("/auth/login");
         $user = auth()->user();
         $user_balance = DB::select("SELECT * FROM balance_histories WHERE user_id = ? ORDER BY id DESC LIMIT 1", [$user->id]);
+        if(count($user_balance) == 0) {
+            DB::insert("INSERT INTO balance_histories (user_id, balance_after, balance_before, amount, type, description) VALUES (?, 0, 0, 0, 1, 'First Balance')", [$user->id]);
+        }
         $user->balance = $user_balance[0]->balance_after ?? 0;
         return $next($request);
     }

@@ -17,10 +17,9 @@ class StocksController extends Controller
         }
         $buy_open_orders = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND order_type = ? AND user_id != ? ORDER BY order_price DESC", [$id, "BUY", auth()->id()]);
         $sell_open_orders = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND order_type = ? AND user_id != ? ORDER BY order_price ASC", [$id, "SELL", auth()->id()]);
-        $open_orders = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND user_id != ? ORDER BY order_price ASC", [$id, auth()->id()]);
 
         $user_open_orders = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND user_id = ? ORDER BY order_price DESC", [$id, auth()->id()]);
-        return view("marketplace", ["open_orders" => $open_orders, "stock" => $result[0], "buy_orders" => $buy_open_orders, "sell_orders" => $sell_open_orders, "user_open_orders" => $user_open_orders, 'id' => $id, 'stocks' => $result]);
+        return view("marketplace", ["stock" => $result[0], "buy_orders" => $buy_open_orders, "sell_orders" => $sell_open_orders, "user_open_orders" => $user_open_orders, 'id' => $id, 'stocks' => $result]);
     }
 
     public function createOrder($id) {
@@ -33,7 +32,7 @@ class StocksController extends Controller
         $order_price = request()->input("order_price");
         $request_order_quantity = request()->input("order_quantity");
         $order_quantity = $request_order_quantity;
-        $result = DB::select("SELECT * FROM stocks WHERE symbol = ? LIMIT 1", [$id]);
+        $result = DB::select("SELECT * FROM stocks WHERE symbol = ?", [$id]);
         if(count($result) < 1) {
             abort(404);
         }
