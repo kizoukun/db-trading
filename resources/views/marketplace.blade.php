@@ -11,7 +11,7 @@
                 <script type="text/javascript">
                     new TradingView.widget({
                         "autosize": true,
-                        "symbol": "IDX:{{$id}}",
+                        "symbol": "{{ $id == "AAPL" || $id == "GOOGL" ? "NASDAQ" : "IDX" }}:{{$id}}",
                         "interval": "D",
                         "timezone": "Etc/UTC",
                         "theme": "dark",
@@ -42,7 +42,7 @@
                 </div>
             </div>
         </div>
-        <div  class="bg-white p-4 md:col-span-3 rounded-[20px]"> 
+        <div  class="bg-white p-4 md:col-span-3 rounded-[20px]">
         <h1 class="font-bold text-xl border-b border-b-gray-500">Your Open Orders</h1>
             <table border="1" class="w-full table-auto">
         <thead class="text-left text-lg text-black font-bold border-b-black">
@@ -72,7 +72,7 @@
         </tbody>
     </table>
 </div>
-    <div class="md:col-span-3 grid grid-cols-2 gap-5">  
+    <div class="md:col-span-3 grid grid-cols-2 gap-5">
         <div>
 
             <form action="/dashboard/stocks/{{$stock->symbol}}" method="post" class="bg-white rounded-[20px] p-4">
@@ -138,10 +138,10 @@
         </form>
         </div>
     </div>
-        
+
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-        <div class="bg-white p-4 rounded-[20px]"> 
+        <div class="bg-white p-4 rounded-[20px]">
         <h1 class="font-bold text-xl border-b border-b-gray-500">Buy Open Orders</h1>
             <table border="1" class="w-full table-auto">
                 <thead class="text-left text-lg text-black font-bold border-b-black">
