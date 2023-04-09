@@ -118,7 +118,7 @@
             <p class="text-3xl font-bold mb-4">Sell Order</p>
             @csrf
             <input type="hidden" name="stock_symbol" value="{{ $stock->symbol }}" />
-            <input type="hidden" name="order_type" value="BUY" />
+            <input type="hidden" name="order_type" value="SELL" />
             <div>
                 <label>
                     Quantity

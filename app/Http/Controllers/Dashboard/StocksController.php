@@ -41,7 +41,7 @@ class StocksController extends Controller
         if($order_type == "BUY") {
             $total_price = $order_price * $order_quantity;
             if($total_price > ($user->balance ?? 0)) {
-                return back()->withErrors("Insufficient balance");
+                return back()->with("toast_error", "Insufficient balance");
             }
             $sell_order = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND order_type = ? AND order_price <= ? AND user_id != ? ORDER BY order_price ASC", [$stock->symbol, "SELL", $order_price, $user->getAuthIdentifier()]);
             $current_num = 0;
@@ -99,7 +99,7 @@ class StocksController extends Controller
         } else if($order_type == "SELL") {
             $userOwnedStock = DashboardController::getUserStockAmount($user->id, $stock->symbol);
             if($userOwnedStock - $request_order_quantity < 0) {
-                return back()->withErrors("You don't have enough this stock");
+                return back()->with("toast_error", "You don't have enough this stock");
             }
             $buy_order = DB::select("SELECT * FROM open_orders WHERE stock_symbol = ? AND order_type = ? AND order_price >= ? AND user_id != ? ORDER BY order_price DESC", [$stock->symbol, "BUY", $order_price, $user->getAuthIdentifier()]);
             $current_num = 0;
