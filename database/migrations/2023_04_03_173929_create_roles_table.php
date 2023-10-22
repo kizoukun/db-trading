@@ -19,6 +19,12 @@ return new class extends Migration
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP'));
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
+
+        // Insert to roles
+        DB::table('roles')->insert([
+            ['name' => 'user', 'description' => 'User'],
+            ['name' => 'admin', 'description' => 'Admin'],
+        ]);
     }
 
     /**
